@@ -1,0 +1,10 @@
+{
+    "name": "Dashboard",
+    "description": "A personalized landing page",
+    "version": "0.1",
+    "manifest_version": 2,
+
+    "chrome_url_overrides": {
+        "newtab": "public/index.html"
+    }
+}
