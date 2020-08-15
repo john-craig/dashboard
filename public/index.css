@@ -1,0 +1,69 @@
+/* Body CSS */
+
+body.background {
+    background-image: url("./background.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+/* Div CSS */
+div.panel-wrapper {
+    display: flex;
+    flex-direction: row;
+    padding: 25;
+}
+
+
+div.panel-main {
+    width: 800px;
+    min-height: 800px;
+    margin: 25;
+    border-radius: 15px;
+    padding: 25;
+}
+
+div.panel-main:before{
+    background: inherit;
+    content: "";
+    width: 800px;
+    min-height: 800px;
+    position: absolute;
+    box-shadow: inset 0 0 0 3000px rgba(0, 0, 0,0.4);
+    filter: url("#fisheye");
+}
+
+div.panel-main-internal{
+    position: absolute;
+    width: 750px;
+    min-height: 800px;
+    padding: 25px;
+}
+ 
+div.panel-side {
+    width: 350px;
+    min-height: 800px;
+    margin: 25;
+    border-radius: 15px;
+    padding: 25;
+}
+
+div.panel-side:before{
+    background: inherit;
+    content: "";
+    width: 350px;
+    min-height: 800px;
+    position: absolute;
+    box-shadow: inset 0 0 0 3000px rgba(0, 0, 0,0.4);
+    filter: url("#fisheye");
+}
+
+div.panel-side-internal{
+    position: absolute;
+    width: 300px;
+    min-height: 800px;
+    padding: 25px;
+}
+
+p {
+    color: white
+}
