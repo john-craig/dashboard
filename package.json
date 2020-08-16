@@ -6,7 +6,9 @@
   "dependencies": {
     "preact": "^10.4.7"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@babel/core": "^7.11.1"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
