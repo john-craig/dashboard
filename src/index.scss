@@ -7,61 +7,28 @@ body {
 }
 
 /* Div CSS */
-div.panel-wrapper {
+div.root {
     display: flex;
     flex-direction: row;
-    padding: 25;
+    padding: 1%;
 }
 
-
-div.panel-main {
-    width: 800px;
-    min-height: 800px;
-    margin: 25;
+div.panel {
     border-radius: 15px;
-    padding: 25;
+    margin: 1%;
+    padding: 1%;
+    background-color: rgba(0, 0, 0,0.4)
 }
 
-div.panel-main:before{
-    background: inherit;
-    content: "";
-    width: 800px;
-    min-height: 800px;
-    position: absolute;
-    box-shadow: inset 0 0 0 3000px rgba(0, 0, 0,0.4);
-    filter: blur(10);
+div.main {
+    width: 45%;
+    height: 800px;
 }
 
-div.panel-main-internal{
-    position: absolute;
-    width: 750px;
-    min-height: 800px;
-    padding: 25px;
-}
- 
-div.panel-side {
-    width: 350px;
-    min-height: 800px;
-    margin: 25;
-    border-radius: 15px;
-    padding: 25;
-}
 
-div.panel-side:before{
-    background: inherit;
-    content: "";
-    width: 350px;
-    min-height: 800px;
-    position: absolute;
-    box-shadow: inset 0 0 0 3000px rgba(0, 0, 0,0.4);
-    filter: blur(10);
-}
-
-div.panel-side-internal{
-    position: absolute;
-    width: 300px;
-    min-height: 800px;
-    padding: 25px;
+div.side {
+    width: 25%;
+    height: 800px;
 }
 
 p {

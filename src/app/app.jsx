@@ -1,5 +1,5 @@
 import { h, Component } from 'preact';
-import Dashboard from './old_page.jsx'
+import Dashboard from './dashboard.jsx'
 
 class App extends Component {
     render() {
