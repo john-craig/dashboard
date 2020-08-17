@@ -1,5 +1,4 @@
 import { h, Component } from 'preact';
-import '../index.scss'
 
 export class SidePanel extends Component {
     render(){
