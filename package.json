@@ -4,6 +4,8 @@
   "description": "TBD",
   "main": "index.js",
   "dependencies": {
+    "@uppy/google-drive": "^1.5.13",
+    "googleapis": "^59.0.0",
     "preact": "^10.4.7"
   },
   "devDependencies": {
