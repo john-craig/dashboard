@@ -1,5 +1,4 @@
 import { h, Component } from 'preact';
-
 export class Tasklist extends Component {
     render(){
 

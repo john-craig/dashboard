@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "description": "TBD",
   "main": "index.js",
+  "browser": {
+    "net": false,
+    "fs": false,
+    "child_process":false
+  },
   "dependencies": {
     "@uppy/google-drive": "^1.5.13",
     "googleapis": "^59.0.0",

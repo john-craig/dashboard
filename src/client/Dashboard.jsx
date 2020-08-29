@@ -3,28 +3,49 @@ import { SidePanel, MainPanel } from './Panel.jsx'
 import { Tasklist } from './modules/Tasklist.jsx'
 
 class Dashboard extends Component {
+    constructor(props){
+        super(props)
+
+        this.state = {
+            shouldDisplay: true
+        }
+
+        this.handleKeyPress = this.handleKeyPress.bind(this)
+    }
+
+    componentDidMount(){
+        self.addEventListener("keypress", this.handleKeyPress)
+    }
+
+    handleKeyPress(event){
+        var display = true
+
+        if (event.key) {
+            display = !this.state.shouldDisplay
+        }
+
+        this.setState({
+            shouldDisplay: display
+        })
+    }
+
     render() {
+        const shouldDisplay = this.state.shouldDisplay
+
         return (
-            <div class="root">
-                <SidePanel
-                    children = {
-                        <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                    }
-                />
+            <div>
 
-                <MainPanel
-                    children = {
-                        <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                    }
-                />
+            {shouldDisplay ? (
+                <div class="root">
+                    <SidePanel/>
 
-                <SidePanel
-                    children = {<Tasklist/>}
-                />
+                    <MainPanel/>
+
+                    <SidePanel/>
+                </div>
+            ): (
+                <div></div>
+            )}
             </div>
         )
     }
