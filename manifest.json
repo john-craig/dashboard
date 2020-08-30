@@ -9,6 +9,19 @@
     },
 
     "permissions": [
-        "identity"
-    ]
+        "identity",
+        "https://www.googleapis.com/*"
+    ],
+    
+    "oauth": {
+        "clientid": "772334501588-ftppddfg63k9gdl0tupio9lafjodrbtg.apps.googleusercontent.com",
+        "scopes": [
+            "https://www.googleapis.com/auth/userinfo.email",
+            "https://mail.google.com/",
+            "../auth/drive",
+            "../auth/calendar"
+        ]
+    },
+
+    "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAk/1ZosuYMYOO5nPECmzoXyWiZCQBWbSGQ8z69JgreUCIgL332DizTsJeAykNYA3iqzdGcl/xVHVtYa/E6+YaJbO29bIbQ8OwBUVQsF+13qOKkK3IdQjV3k1rhvS40TGXMDv3vRWg+6rhgTeoEfBfm+RjuAolDoV/rC4WqjOImqlGVcuamwlZqIKCIh1CqEt4dxttUAjQxtrWP0GdehlpuX5oeuW+5HvDDg5sxfYVnExaWhEgTLFpqg8sVTZF271ksHZnL5yDIusuVLFK/C9wI6z0ylFfp+ZeXXQgvoNjgH+2ur7BlqzPxMD4O67R6OmjKTsTHI9DMAkB1qcKzZDN7wIDAQAB"
 }
