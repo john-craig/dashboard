@@ -6,12 +6,13 @@
   "browser": {
     "net": false,
     "fs": false,
-    "child_process":false
+    "child_process": false
   },
   "dependencies": {
     "@uppy/google-drive": "^1.5.13",
     "googleapis": "^59.0.0",
-    "preact": "^10.4.7"
+    "preact": "^10.4.7",
+    "react-scripts": "^3.4.3"
   },
   "devDependencies": {
     "@babel/core": "^7.11.1",
