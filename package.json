@@ -4,13 +4,11 @@
   "description": "TBD",
   "main": "index.js",
   "browser": {
-    "net": false,
-    "fs": false,
     "child_process": false
   },
   "dependencies": {
-    "@uppy/google-drive": "^1.5.13",
-    "googleapis": "^59.0.0",
+    "dotenv": "^8.2.0",
+    "gapi": "0.0.3",
     "preact": "^10.4.7",
     "react-scripts": "^3.4.3",
     "react-three-fiber": "^5.0.3"
@@ -20,6 +18,8 @@
     "@babel/plugin-transform-react-jsx": "^7.10.4",
     "@babel/preset-env": "^7.11.0",
     "babel-loader": "^8.1.0",
+    "coffee-loader": "^1.0.1",
+    "coffeescript": "^2.5.1",
     "css-loader": "^4.2.1",
     "file-loader": "^6.0.0",
     "node-sass": "^4.14.1",
