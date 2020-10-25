@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "dotenv": "^8.2.0",
-    "gapi": "0.0.3",
+    "gapi-client": "0.0.3",
     "preact": "^10.4.7",
     "react-scripts": "^3.4.3",
     "react-three-fiber": "^5.0.3"

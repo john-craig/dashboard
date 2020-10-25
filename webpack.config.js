@@ -48,13 +48,7 @@ module.exports = {
         {
           test: /\.coffee$/,
           loader: 'coffee-loader',
-          options: {
-            bare: false,
-            transpile: {
-              presets: ['@babel/env'],
-            },
-          },
-        }
+        },
       ]
     },
     resolve: {
