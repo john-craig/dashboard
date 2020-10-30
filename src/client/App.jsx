@@ -10,8 +10,8 @@ class App extends Component {
             
         }
         
-        console.log(process.env)
-        
+        const key = process.env.KEY
+        const clientId = process.env.CLIENTID
 
         /*gapi.load('client:auth2', function(){
             gapi.client.init({
