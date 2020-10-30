@@ -10,7 +10,7 @@ class App extends Component {
             
         }
         
-        
+        console.log(process.env)
         
 
         /*gapi.load('client:auth2', function(){

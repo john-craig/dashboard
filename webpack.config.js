@@ -56,7 +56,7 @@ module.exports = {
     },
     plugins: [
       new webpack.DefinePlugin( {
-        "process.env": dotenv.parsed
+        "process.env": JSON.stringify(dotenv.parsed)
       } ),
     ]
   };
