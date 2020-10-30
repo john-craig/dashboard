@@ -1,7 +1,6 @@
 import { h, Component } from 'preact';
 import gapi from 'gapi-client';
 import Dashboard from './dashboard.jsx'
-
 class App extends Component {
 
     constructor(props){
@@ -11,8 +10,10 @@ class App extends Component {
             
         }
         
+        
+        
 
-        gapi.load('client:auth2', function(){
+        /*gapi.load('client:auth2', function(){
             gapi.client.init({
                 apiKey: key,
                 clientId: clientId,
@@ -22,7 +23,7 @@ class App extends Component {
                 // do stuff with loaded APIs
                 console.log('it worked');
               });
-        });
+        });*/
 
     }
 
