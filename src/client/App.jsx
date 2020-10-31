@@ -1,6 +1,6 @@
 import { h, Component } from 'preact';
-import gapi from 'gapi-client';
 import Dashboard from './dashboard.jsx'
+import GClient from './utils/GClient';
 class App extends Component {
 
     constructor(props){
@@ -10,23 +10,8 @@ class App extends Component {
             
         }
         
-        const key = process.env.KEY
-        const clientId = process.env.CLIENTID
-
-        /*gapi.load('client:auth2', function(){
-            gapi.client.init({
-                apiKey: key,
-                clientId: clientId,
-                scope: 'drive',
-                discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"],
-              }).then(function () {
-                // do stuff with loaded APIs
-                console.log('it worked');
-              });
-        });*/
-
+        const client = new GClient();
     }
-
 
     render() {
         return <Dashboard/>
