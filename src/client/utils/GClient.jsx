@@ -8,26 +8,58 @@ class GClient {
             
         }
 
-        this.handleClientLoad();
+        chrome.identity.getAuthToken({interactive: true}, function(token) {
+            console.log('got the token', token);
+          })
+          
+        // var script = document.createElement('script');
+        // script.onload=this.handleClientLoad;
+        // script.src="https://apis.google.com/js/api.js";
+        // document.body.appendChild(script);
+
+
     }
 
-    handleClientLoad(){
-        gapi.load('client:auth2', this.initClient);
+    handleClientLoad() {
+        gapi.load(
+            'client:auth2', 
+            this.initClient
+        );
     }
 
-    initClient(){
+    initClient() { 
         const key = process.env.KEY
         const clientId = process.env.CLIENTID
+        const scopes = 'profile';
+        // const scopes = [
+        //     'https://www.googleapis.com/auth/drive'
+        // ]
 
-        gapi.client.init({
-            apiKey: key,
-            clientId: clientId,
-            scope: 'https://www.googleapis.com/auth/drive',
-            discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"],
-          }).then(function () {
-            // do stuff with loaded APIs
-            console.log('it worked');
-          });
+        // gapi.auth.authorize({
+        //     client_id: clientId, scope: scopes, immediate: true}, 
+        //     function(res){
+        //         console.log(res);
+        //     }
+        // );
+
+        //gapi.client.setApiKey(key);
+
+        gapi.client.init(
+            {
+                apiKey: key,
+                clientId: clientId,
+                scope: scopes,
+                discoveryDocs: ["https://people.googleapis.com/$discovery/rest?version=v1"]
+            },
+            function(err){
+                console.log(err);
+            }
+        ).then(
+            function () {
+                // do stuff with loaded APIs
+                console.log("It worked!");
+            }
+        )
     }
 }
 
