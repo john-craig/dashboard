@@ -8,10 +8,10 @@ class GClient {
             
         }
 
-        chrome.identity.getAuthToken({interactive: true}, function(token) {
-            console.log('got the token', token);
-          })
-          
+        chrome.identity.getAuthToken({ interactive: true }, function (token) {
+            console.log(token);
+        })
+
         // var script = document.createElement('script');
         // script.onload=this.handleClientLoad;
         // script.src="https://apis.google.com/js/api.js";
@@ -31,18 +31,6 @@ class GClient {
         const key = process.env.KEY
         const clientId = process.env.CLIENTID
         const scopes = 'profile';
-        // const scopes = [
-        //     'https://www.googleapis.com/auth/drive'
-        // ]
-
-        // gapi.auth.authorize({
-        //     client_id: clientId, scope: scopes, immediate: true}, 
-        //     function(res){
-        //         console.log(res);
-        //     }
-        // );
-
-        //gapi.client.setApiKey(key);
 
         gapi.client.init(
             {
