@@ -8,6 +8,7 @@ module.exports = {
     mode: 'production',
     entry: {
       index: './src/index.jsx',
+      backend: './src/backend/index.js'
     },
     output: {
       filename: '[name].js',

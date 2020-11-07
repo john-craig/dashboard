@@ -8,9 +8,17 @@ class GClient {
             
         }
 
-        chrome.identity.getAuthToken({ interactive: true }, function (token) {
-            console.log(token);
-        })
+        const url = chrome.runtime.getURL('');
+
+        console.log(url);
+
+        // fetch('https://apis.google.com/').then(r => r.text()).then(result => {
+        //     console.log(result);
+        // })
+
+        // chrome.identity.getAuthToken({ interactive: true }, function (token) {
+        //     console.log(token);
+        // })
 
         // var script = document.createElement('script');
         // script.onload=this.handleClientLoad;
