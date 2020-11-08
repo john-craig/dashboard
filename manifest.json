@@ -10,6 +10,7 @@
 
     "permissions": [
         "identity",
+        "tabs",
         "https://apis.google.com/"
       ],
 
@@ -21,7 +22,7 @@
     "content_security_policy": "script-src 'self' https://apis.google.com/; object-src 'self'",
     
     "oauth": {
-        "clientid": "580956459961-aica69a0po2oo2mq5tun3g9so2mj1oq0.apps.googleusercontent.com",
+        "clientid": "580956459961-uo675crpeuq37jltt49pqmqpdhii3egh.apps.googleusercontent.com",
         "scopes": [
             "profile"
           ]
