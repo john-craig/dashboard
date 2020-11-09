@@ -6,6 +6,7 @@ const dotenv = require('dotenv').config( {
 
 module.exports = {
     mode: 'production',
+    target:'node',
     entry: {
       index: './src/index.jsx',
       backend: './src/backend/index.js'

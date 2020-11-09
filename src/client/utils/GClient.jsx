@@ -8,10 +8,6 @@ class GClient {
             
         }
 
-        const url = chrome.runtime.getURL('');
-
-        console.log(url);
-
         // fetch('https://apis.google.com/').then(r => r.text()).then(result => {
         //     console.log(result);
         // })

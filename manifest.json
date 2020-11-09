@@ -21,10 +21,11 @@
 
     "content_security_policy": "script-src 'self' https://apis.google.com/; object-src 'self'",
     
-    "oauth": {
-        "clientid": "580956459961-uo675crpeuq37jltt49pqmqpdhii3egh.apps.googleusercontent.com",
+    "oauth2": {
+        "client_id": "580956459961-cn43bm3f268gshi8lovlbs18cstfjdck.apps.googleusercontent.com",
         "scopes": [
-            "profile"
+            "profile",
+            "identity"
           ]
     },
 
