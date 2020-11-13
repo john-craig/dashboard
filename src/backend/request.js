@@ -28,5 +28,7 @@ export async function sendRequest(url, type, token, body){
 
     console.log("Returning a request.")
 
+    console.log(response)
+
     return response;
 }
