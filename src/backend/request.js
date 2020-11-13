@@ -13,7 +13,7 @@ export async function sendRequest(url, type, token, body){
         fetch_options['body'] = body;
     }
 
-    const response = await fetch(
+    const response = fetch(
         url,
         fetch_options
     ).then(
@@ -27,8 +27,6 @@ export async function sendRequest(url, type, token, body){
     );
 
     console.log("Returning a request.")
-
-    console.log(response)
 
     return response;
 }

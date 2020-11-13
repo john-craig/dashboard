@@ -4,7 +4,7 @@ export async function handleRequest(request, token){
     const parameters = determineParameters(request.target)
 
     console.log("Sending a request.")
-    return await requestor.sendRequest(parameters['url'], parameters['type'], token, request.body)
+    return requestor.sendRequest(parameters['url'], parameters['type'], token, request.body)
 }
 
 function determineParameters(target){

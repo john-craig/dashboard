@@ -1,5 +1,4 @@
 require('regenerator-runtime/runtime.js');
-const request = require('./request.js');
 const identity = require('./identity.js')
 
 //Wait for page load
@@ -20,8 +19,20 @@ document.addEventListener('DOMContentLoaded', function() {
 })
 
 chrome.runtime.onMessage.addListener(async function(request, sender, callback) {
-    console.log("Handling a message.")
-    identity.handleMessage(request, callback);
+    if(request['origin'] == 'frontend'){
+        console.log("Recieved a message.")
+        
+        identity.handleMessage(request, function(response){
+            console.log("Returned a message.")
 
-    return true;
+            response.then(function(result) {
+                chrome.runtime.sendMessage(
+                    {
+                        origin: "backend",
+                        body: result
+                    }
+                );
+            })
+        });
+    }
 })

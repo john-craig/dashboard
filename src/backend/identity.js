@@ -18,9 +18,9 @@ export async function handleMessage(request, callback){
         },
         function(token){
             console.log("Handling a request.")
-            const result = endpoint.handleRequest(request, token)
-            
-            callback(result);
+            callback(
+                endpoint.handleRequest(request, token)
+            );
         }
     )
 }

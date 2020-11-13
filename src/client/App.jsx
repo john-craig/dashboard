@@ -1,6 +1,6 @@
 import { h, Component } from 'preact';
 import Dashboard from './dashboard.jsx'
-import {testMessage} from './utils/Messages';
+import {testMessage} from './utils/Middleware';
 class App extends Component {
 
     constructor(props){
@@ -12,11 +12,9 @@ class App extends Component {
     }
 
     async componentDidMount(){
-        testMessage(
-            async function(result){
-                console.log(result);
-            }
-        );
+        const value = await testMessage();
+
+        console.log(value);
     }
 
     render() {
