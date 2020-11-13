@@ -10,7 +10,7 @@ class App extends Component {
             
         }
         
-        const client = new GClient();
+        //const client = new GClient();
     }
 
     render() {

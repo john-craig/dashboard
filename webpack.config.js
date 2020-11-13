@@ -9,7 +9,7 @@ module.exports = {
     target:'node',
     entry: {
       index: './src/index.jsx',
-      backend: './src/backend/index.js'
+      backend: './src/backend/main.js'
     },
     output: {
       filename: '[name].js',

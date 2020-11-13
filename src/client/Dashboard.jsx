@@ -41,7 +41,7 @@ class Dashboard extends Component {
 
                     <MainPanel/>
 
-                    <SidePanel/>
+                    <Tasklist/>
                 </div>
             ): (
                 <div></div>
