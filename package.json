@@ -12,6 +12,7 @@
     "preact": "^10.5.5",
     "react-scripts": "^3.4.4",
     "react-three-fiber": "^5.1.7",
+    "regenerator-runtime": "^0.13.7",
     "terser": "^5.3.8"
   },
   "devDependencies": {

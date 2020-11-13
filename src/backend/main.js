@@ -1,4 +1,6 @@
+require('regenerator-runtime/runtime.js');
 const request = require('./request.js');
+const identity = require('./identity.js')
 
 //Wait for page load
 document.addEventListener('DOMContentLoaded', function() {
@@ -12,21 +14,14 @@ document.addEventListener('DOMContentLoaded', function() {
         if(tab.pendingUrl == "chrome://newtab/"){
             console.log("Dashboard opened.")
 
-            handleSignIn();
+            identity.handleSignIn();
         }
     })
 })
 
-function handleSignIn(){
-    chrome.identity.getAuthToken(
-        {
-            interactive: true
-        },
-        function(token){
-            console.log("Successfully authenticated.")
+chrome.runtime.onMessage.addListener(async function(request, sender, callback) {
+    console.log("Handling a message.")
+    identity.handleMessage(request, callback);
 
-            var response = request.sendRequest('https://www.googleapis.com/drive/v2/files', 'GET', token)
-            response.then(value => {console.log(value)})
-        }
-    )
-}
+    return true;
+})

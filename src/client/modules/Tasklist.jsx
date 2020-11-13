@@ -3,10 +3,6 @@ import {
         Component
     } from 'preact';
 export class Tasklist extends Component {
-    handleSignIn(){
-        chrome.runtime.sendMessage({ message: 'sign_in' });
-    }
-
     render(){
 
         return (

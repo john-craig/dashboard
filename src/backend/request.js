@@ -1,4 +1,4 @@
-export function sendRequest(url, type, token, body=null){
+export async function sendRequest(url, type, token, body){
     //https://www.googleapis.com/drive/v2/files
 
     let fetch_options = {
@@ -13,7 +13,7 @@ export function sendRequest(url, type, token, body=null){
         fetch_options['body'] = body;
     }
 
-    const response = fetch(
+    const response = await fetch(
         url,
         fetch_options
     ).then(
@@ -25,6 +25,8 @@ export function sendRequest(url, type, token, body=null){
             return data;
         }
     );
+
+    console.log("Returning a request.")
 
     return response;
 }

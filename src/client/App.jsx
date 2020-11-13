@@ -1,6 +1,6 @@
 import { h, Component } from 'preact';
 import Dashboard from './dashboard.jsx'
-import GClient from './utils/GClient';
+import {testMessage} from './utils/Messages';
 class App extends Component {
 
     constructor(props){
@@ -9,8 +9,14 @@ class App extends Component {
         this.state = {
             
         }
-        
-        //const client = new GClient();
+    }
+
+    async componentDidMount(){
+        testMessage(
+            async function(result){
+                console.log(result);
+            }
+        );
     }
 
     render() {
