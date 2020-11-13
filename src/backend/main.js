@@ -1,5 +1,5 @@
 require('regenerator-runtime/runtime.js');
-const identity = require('./identity.js')
+const identity = require('./identity.js');
 
 //Wait for page load
 document.addEventListener('DOMContentLoaded', function() {

@@ -6,7 +6,7 @@ export function handleSignIn(){
             interactive: true
         },
         function(token){
-            console.log("Successfully authenticated.")
+            console.log("Successfully authenticated.");
         }
     )
 }

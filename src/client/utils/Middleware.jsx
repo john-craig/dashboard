@@ -8,13 +8,16 @@ export async function recieveMessage(){
     })
 }
 
-export async function sendMessage(target, body=undefined){
+export async function sendMessage(target, argument=undefined, body=undefined){
     const message = {
         origin: 'frontend',
         target: target,
+        argument: argument,
         body: body
     }
     
+    console.log(message)
+
     chrome.runtime.sendMessage(message);
 
     return recieveMessage()
@@ -23,5 +26,5 @@ export async function sendMessage(target, body=undefined){
 /* Request particulars */
 
 export async function testMessage(){
-    return await sendMessage("driveFiles");
+    return await sendMessage("getFile", "November");
 }
