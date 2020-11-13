@@ -15,6 +15,8 @@ function determineParameters(request){
         'body': undefined
     }
 
+    const queryURL = new URLSearchParams('q=p');
+
     switch(request.target){
         case "driveFiles":
             parameters.type = "GET";
@@ -23,8 +25,13 @@ function determineParameters(request){
 
         //Get all the files of a root directory
         case "getFile":
+            queryURL.set('q', "name='" + request.argument + "'");
+            console.log(queryURL.toString())
+
+            //?q=name+%3d+%27" + request.argument + "%27"
+
             parameters.type = "GET";
-            parameters.url = "https://www.googleapis.com/drive/v3/files?q=name+%3d+%27" + request.argument + "%27"
+            parameters.url = "https://www.googleapis.com/drive/v3/files?" + queryURL.toString()
     }
 
     return parameters
