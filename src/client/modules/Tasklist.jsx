@@ -18,17 +18,32 @@ export class Tasklist extends Component {
         const currentRecord = (await getCurrentRecord()).body;
         const currentBudget = (await getCurrentBudget()).body;
 
-        console.log(currentLog.name)
-        console.log(currentRecord.name)
-        console.log(currentBudget.name)
+        this.setState({
+            'log': currentLog,
+            'record': currentRecord,
+            'budget': currentBudget
+        })
     }
 
 
     render(){
+        var log = this.state.log
+        var record = this.state.record
+        var budget = this.state.budget
 
         return (
             <div class="side panel">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                <ul>
+                    {log && 
+                        <li><a href={log.webViewLink} target="_blank">Log</a></li>
+                    }
+                    {record && 
+                        <li><a href={record.webViewLink} target="_blank">Record</a></li>
+                    }
+                    {budget && 
+                        <li><a href={budget.webViewLink} target="_blank">Budget</a></li>
+                    }
+                </ul>
             </div>
         )
     }
