@@ -17,7 +17,7 @@ export async function handleMessage(request, callback){
             interactive: false
         },
         function(token){
-            console.log("Handling a request.")
+            console.log("Handling a message.")
             callback(
                 router.handleRoute(request, token)
             );

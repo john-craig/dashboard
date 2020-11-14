@@ -3,6 +3,8 @@ const fileRoutes = require('./files.js')
 export async function handleRoute(request, token){
     var response = undefined;
 
+    console.log("Handling a route.")
+
     const routes = {
         "getFile": fileRoutes.getFileByName,
         "getFiles": fileRoutes.getFiles,
@@ -14,8 +16,6 @@ export async function handleRoute(request, token){
     if(request.target in routes){
         response = routes[request.target](request, token)
     }
-
-    console.log("Sending a request.")
 
     return response;
 }

@@ -13,6 +13,8 @@ export async function sendRequest(url, type, token, body){
         fetch_options['body'] = body;
     }
 
+    console.log("Sending a request.")
+
     const response = fetch(
         url,
         fetch_options
