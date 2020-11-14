@@ -1,44 +1,8 @@
-const requestor = require('./utils/request.js')
-
-export async function handleRequest(request, token){
-    var response = undefined;
-
-    switch(request.target){
-        case "getFile":
-            response = getFileByName(request, token)
-            break;
-        case "getFiles":
-            response = getFiles(request, token)
-            break;
-        case "getTodaysLog":
-            response = await getTodaysLog(request, token)
-            break;
-        case "getLogByDate":
-            response = await getLogByDate(request, token)
-            break;
-        case "getTodaysRecord":
-            response = await getTodaysRecord(request, token)
-            break;
-        case "getRecordByDate":
-            response = await getRecordByDate(request, token)
-            break;
-        case "getTodaysBudget":
-            response = await getTodaysBudget(request, token)
-            break;
-        case "getBudgetByDate":
-            response = await getBudgetByDate(request, token)
-            break;
-    }
-
-    console.log("Sending a request.")
-
-    return response;
-}
-
+const requestor = require('../utils/request.js')
 
 // Methods
 
-function getFileByName(request, token){
+export function getFileByName(request, token){
     const type = "GET";
     const query = new URLSearchParams('q=p');
     query.set('q', "name = '" + request.argument + "'")
@@ -48,7 +12,7 @@ function getFileByName(request, token){
     return requestor.sendRequest(url, type, token, undefined)
 }
 
-function getFileByID(request, token){
+export function getFileByID(request, token){
     const type = "GET"
     const query = new URLSearchParams("fields=*")
     const url = "https://www.googleapis.com/drive/v3/files/" + request.argument + '?' + query.toString()
@@ -56,35 +20,35 @@ function getFileByID(request, token){
     return requestor.sendRequest(url, type, token, undefined)
 }
 
-function getFiles(request, token){
+export function getFiles(request, token){
     const type = "GET";
     const url = "https://www.googleapis.com/drive/v3/files?" + buildQuery('name', 'contains', request.argument)
 
     return requestor.sendRequest(url, type, token, undefined)
 }
 
-async function getTodaysLog(request, token){
+export async function getTodaysLog(request, token){
     const date = new Date();
     request.argument = date;
 
     return await getLogByDate(request, token)
 }
 
-async function getTodaysRecord(request, token){
+export async function getTodaysRecord(request, token){
     const date = new Date();
     request.argument = date;
 
     return await getRecordByDate(request, token)
 }
 
-async function getTodaysBudget(request, token){
+export async function getTodaysBudget(request, token){
     const date = new Date();
     request.argument = date;
 
     return await getBudgetByDate(request, token)
 }
 
-async function getLogByDate(request, token){
+export async function getLogByDate(request, token){
     var date = request.argument;
     var month = date.getMonth() + 1;
     var day = date.getDate();
@@ -113,7 +77,7 @@ async function getLogByDate(request, token){
     }
 }
 
-async function getRecordByDate(request, token){
+export async function getRecordByDate(request, token){
     var date = request.argument;
     var month = date.getMonth() + 1;
     var day = date.getDate();
@@ -142,7 +106,7 @@ async function getRecordByDate(request, token){
     }
 }
 
-async function getBudgetByDate(request, token){
+export async function getBudgetByDate(request, token){
     var date = request.argument;
     var month = date.getMonth() + 1;
     var day = date.getDate();

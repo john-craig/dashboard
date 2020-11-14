@@ -1,4 +1,4 @@
-const endpoint = require('./endpoint.js')
+const router = require('./routes/router.js')
 
 export function handleSignIn(){
     chrome.identity.getAuthToken(
@@ -19,7 +19,7 @@ export async function handleMessage(request, callback){
         function(token){
             console.log("Handling a request.")
             callback(
-                endpoint.handleRequest(request, token)
+                router.handleRoute(request, token)
             );
         }
     )
