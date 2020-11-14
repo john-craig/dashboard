@@ -15,16 +15,22 @@ export async function sendMessage(target, argument=undefined, body=undefined){
         argument: argument,
         body: body
     }
-    
-    console.log(message)
 
     chrome.runtime.sendMessage(message);
 
-    return recieveMessage()
+    return recieveMessage();
 }
 
 /* Request particulars */
 
-export async function testMessage(){
-    return await sendMessage("getTodaysLog");
+export async function getCurrentLog(){
+    return await sendMessage('getTodaysLog');
+}
+
+export async function getCurrentRecord(){
+    return await sendMessage('getTodaysRecord');
+}
+
+export async function getCurrentBudget(){
+    return await sendMessage('getTodaysBudget');
 }

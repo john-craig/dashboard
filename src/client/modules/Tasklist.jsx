@@ -2,7 +2,28 @@ import {
         h,
         Component
     } from 'preact';
+import {getCurrentLog, getCurrentRecord, getCurrentBudget} from '../utils/Middleware'
+
 export class Tasklist extends Component {
+    constructor(props){
+        super(props)
+
+        this.state = {
+
+        }
+    }
+
+    async componentDidMount(){
+        const currentLog = (await getCurrentLog()).body;
+        const currentRecord = (await getCurrentRecord()).body;
+        const currentBudget = (await getCurrentBudget()).body;
+
+        console.log(currentLog.name)
+        console.log(currentRecord.name)
+        console.log(currentBudget.name)
+    }
+
+
     render(){
 
         return (
