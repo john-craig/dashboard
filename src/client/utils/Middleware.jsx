@@ -34,3 +34,11 @@ export async function getCurrentRecord(){
 export async function getCurrentBudget(){
     return await sendMessage('getTodaysBudget');
 }
+
+export async function getCurrentRegimen(){
+    return await sendMessage('getTodaysRegimen');
+}
+
+export async function getCurrentNutrition(){
+    return await sendMessage('getTodaysNutrition');
+}

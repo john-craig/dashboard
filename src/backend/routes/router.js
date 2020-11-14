@@ -11,7 +11,7 @@ export async function handleRoute(request, token){
         "getTodaysLog": fileRoutes.getTodaysLog,
         "getTodaysRecord": fileRoutes.getTodaysRecord,
         "getTodaysBudget": fileRoutes.getTodaysBudget,
-        "getTodaysRegimen": fileRoutes.getTodaysRecord,
+        "getTodaysRegimen": fileRoutes.getTodaysRegimen,
         "getTodaysNutrition": fileRoutes.getTodaysNutrition
     }
 
