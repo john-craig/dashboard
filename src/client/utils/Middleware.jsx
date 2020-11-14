@@ -26,5 +26,5 @@ export async function sendMessage(target, argument=undefined, body=undefined){
 /* Request particulars */
 
 export async function testMessage(){
-    return await sendMessage("getFile", "November");
+    return await sendMessage("getTodaysLog");
 }
