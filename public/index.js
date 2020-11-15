@@ -1,7 +1,8 @@
-document.addEventListener('DOMContentLoaded', function () {
-    main();
-});
+import Dashboard from '../src/Dashboard.jsx'
 
-function main() {
-    console.log("FAS")
-}
+document.addEventListener('DOMContentLoaded', function () {
+    ReactDOM.render(
+        React.createElement(Dashboard),
+        document.getElementById('root')
+      );
+});
