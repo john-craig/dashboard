@@ -13,25 +13,88 @@ div.root {
     padding: 1%;
 }
 
-div.panel {
-    border-radius: 15px;
-    margin: 1%;
-    padding: 1%;
-    background-color: rgba(0, 0, 0,0.4);
-    backdrop-filter: blur(5px)
-}
+// div.main {
+//     width: 45%;
+//     height: 800px;
+// }
 
-div.main {
-    width: 45%;
-    height: 800px;
-}
-
-
-div.side {
-    width: 25%;
-    height: 800px;
-}
+// div.side {
+//     width: 25%;
+//     height: 800px;
+// }
 
 p {
     color: white
 }
+
+/**/
+
+
+// .panelWrapper {
+//     perspective: 800px;
+// }
+  
+// $sidePanelWidth: 200px;
+// $mainPanelWidth: 600px;
+// $panelHeight: 800px;
+
+// .panel {
+//     font-size: 4em;
+//     width: $sidePanelWidth;
+//     transform-style: preserve-3d;
+// }
+
+// .mainFace {
+//     position: absolute;
+//     width: $mainPanelWidth;
+//     height: $panelHeight;
+//     background: rgba(100,100,100,0.5);
+//     text-align: center;
+// }
+
+// .sideFace {
+//     //position: absolute;
+//     width: $sidePanelWidth;
+//     height: $panelHeight;
+//     background: rgba(100,100,100,0.5);
+//     text-align: center;
+// }
+
+// .right {transform: rotateY($rightRotateY) skewY($skewY) translateX($translateX) translateZ($rightTranslateZ) translateY($translateY);}
+
+// .left {transform: rotateY($leftRotateY) skewY($skewY) translateX($translateX) translateZ($leftTranslateZ) translateY($translateY);}
+
+
+$sidePrismHeight: 800px;
+
+.wrapper {
+    width: 25%;
+    height: $sidePrismHeight;
+}
+
+.prism {
+    perspective: 800px;
+    font-size: 4em;
+    width: 100%;
+    height: $sidePrismHeight;
+    margin: 0px;
+    transform-style: preserve-3d;
+    display: flex;
+    flex-direction: row;
+  }
+  
+.face {
+    width: 100%;
+    height: $sidePrismHeight;
+    background: rgba(100,100,100,0.5);
+    text-align: center;
+    line-height: 2em;
+  }
+
+
+
+.left {transform: rotateY(-45deg) translateX(-50%);}
+.frontSinister {transform: translateX(-50%)}
+
+.right {transform: rotateY(45deg) translateX(50%);}
+.frontDexter {transform: translateX(50%)}
