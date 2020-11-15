@@ -39,7 +39,9 @@ class Dashboard extends Component {
                 <div class="root">
                     <LeftPanel/>
 
-
+                    <MainPanel>
+                        <p>FAS</p>
+                    </MainPanel>
 
                     <Tasklist/>
                 </div>

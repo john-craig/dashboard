@@ -1,6 +1,5 @@
 import { h, Component } from 'preact';
-
-
+import '../../styles/panels.scss'
 
 export class RightPanel extends Component {
     render(){
@@ -36,9 +35,17 @@ export class LeftPanel extends Component {
 export class MainPanel extends Component {
     render(){
         return (
-            <div class="panelWrapper">
-                <div class="main panel">
-                    <div class= "mainFace">
+            <div class="mainPanel">
+                <div class="prismSuperior">
+                    <div class="face">{this.props.children}</div>
+                    <div class="bottom face"></div>
+                </div>
+
+                <div class="middle"></div>
+
+                <div class="prismInferior">
+                    <div class="top face"></div>
+                    <div class="face">
                         {this.props.children}
                     </div>
                 </div>
