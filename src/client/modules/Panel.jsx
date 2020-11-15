@@ -5,10 +5,12 @@ import { h, Component } from 'preact';
 export class RightPanel extends Component {
     render(){
         return (
-            <div class="wrapper">
-                <div class="prism">
-                    <div class="face left">3</div>
-                    <div class="face frontSinister">1</div>
+            <div class="sidePanel">
+                <div class="prismSinister">
+                    <div class="face left"></div>
+                    <div class="face frontSinister">
+                        {this.props.children}
+                    </div>
                 </div>
             </div>
         )
@@ -17,32 +19,14 @@ export class RightPanel extends Component {
 
 export class LeftPanel extends Component {
 
-        /*<SidePanel>
-                <div class="sideFace front">
-                    this.props.children
-                </div>
-                <div class="face right"></div>
-            </SidePanel>
-            */
-
     render(){
         return (
-            <div class="wrapper">
-                <div class="prism">
-                    <div class="face frontDexter">1</div>
-                    <div class="face right">3</div>
-                </div>
-            </div>
-        )
-    }
-}
-
-export class SidePanel extends Component {
-    render(){
-        return (
-            <div class="panelWrapper">
-                <div class="side panel">
-                    {this.props.children}
+            <div class="sidePanel">
+                <div class="prismDexter">
+                    <div class="face frontDexter">
+                        {this.props.children}
+                    </div>
+                    <div class="face right"></div>
                 </div>
             </div>
         )

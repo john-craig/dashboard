@@ -2,7 +2,7 @@ import {
         h,
         Component
 } from 'preact';
-import {LeftPanel} from './Panel'
+import {RightPanel} from './Panel'
 
 import {
     getCurrentLog, 
@@ -46,7 +46,7 @@ export class Tasklist extends Component {
         var nutrition = this.state.nutrition
 
         return (
-            <LeftPanel>
+            <RightPanel>
                 <ul>
                     {log && 
                         <li><a href={log.webViewLink} target="_blank">Log</a></li>
@@ -64,7 +64,7 @@ export class Tasklist extends Component {
                         <li><a href={budget.webViewLink} target="_blank">Budget</a></li>
                     }
                 </ul>
-            </LeftPanel>
+            </RightPanel>
         )
     }
 

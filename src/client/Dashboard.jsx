@@ -38,12 +38,10 @@ class Dashboard extends Component {
             {shouldDisplay ? (
                 <div class="root">
                     <LeftPanel/>
-                    
-                    <RightPanel/>
 
-                    {/*<MainPanel/>
 
-                    <Tasklist/>*/}
+
+                    <Tasklist/>
                 </div>
             ): (
                 <div></div>
