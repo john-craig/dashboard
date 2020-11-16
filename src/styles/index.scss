@@ -1,8 +1,7 @@
 /* Body CSS */
-
 body {
-    //background-image: url("../background.png");
-    background-color: black;
+    background-image: url("../background.png");
+    //background-color: black;
     background-size: cover;
     background-attachment: fixed;
 }
@@ -12,6 +11,7 @@ div.root {
     display: flex;
     flex-direction: row;
     padding: 1%;
+    height: 850px;
 }
 
 p {

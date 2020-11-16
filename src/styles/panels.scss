@@ -1,3 +1,6 @@
+@use "sass:math";
+@use "./perspective.scss";
+
 $sidePrismHeight: 800px;
 $topPrismHeight: 100px;
 $bottomPrismHeight: 300px;
@@ -97,3 +100,32 @@ $verticalFaceHeight: 50px;
 
 .right {transform: rotateY(45deg) translateX(50%);}
 .frontDexter {transform: translateX(50%)}
+
+//An attempt at trapezoid
+
+$left: 2.5vw;
+$top: 2.5vh;
+
+.perspective-front{
+    position: "absolute";
+    background-color: white;
+    left: $left;
+    top: $top;
+    width: 10vw;
+    height: 10vw;
+}
+
+.test {
+    position: "absolute";
+    background-color: white;
+    left: $left;
+    top: $top;
+    width: 10vw;
+    height: 10vh;
+    @include perspective.perspective-edges($left, $top, 10vw, 10vh, 100%);
+}
+
+// .perspective-side{
+//     @include perspective-edges($left + 5vw, $top, 10vw, 10vh, 5vw);
+//     position: "absolute";
+// }

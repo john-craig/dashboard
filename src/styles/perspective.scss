@@ -1,0 +1,57 @@
+@function slope($xPos, $yPos){
+    $vanishing-height: 50vh;
+    $vanishing-width: 50vw;
+
+    $slope: (($yPos - $vanishing-height) / 1vh) / (($xPos - $vanishing-width) / 1vw);
+    @return $slope;
+}
+
+@function hypotenuse($xPos, $yPos, $distance){
+    $slope: slope($xPos, $yPos);
+    $hypotenuse: math.sin($slope) * $distance;
+
+    @return $hypotenuse
+}
+
+@function adjacent($xPos, $yPos, $distance){
+    $slope: slope($xPos, $yPos);
+    $adjacent: math.sin($slope) * $distance;
+
+    @return $adjacent;
+}
+
+//To Do:
+/*
+    Basically, I'm going to need a series of functions like...
+        getPoint1X
+        getPoint1Y
+
+        getPoint2X
+        getPoint2Y
+
+        getPoint3X
+        getPoint3Y
+
+        getPoint4X
+        getPoint4Y
+    with each being able to accept the X, Y, width, height, and distance of a perspective trapezoid
+    and being able to return the corresponding position of each corner of that trapezoid
+    which can then be plugged into the perspective-edges mixin below
+*/
+
+@mixin perspective-edges($xPos, $yPos, $width, $height, $distance) {
+    // width: $width;
+    // height: $height - (adjacent($xPos, $yPos, $distance) + adjacent($xPos + $width, $yPos + $height, $distance));
+
+    // border-left: $distance solid white;
+
+    // border-top: hypotenuse($xPos, $yPos, $distance) solid transparent;
+    // border-bottom: hypotenuse($xPos + $width, $yPos + $height, $distance) solid transparent;
+
+    clip-path: polygon(
+            0 0, 
+            100% 50%,
+            0 100%,
+            100% 100%
+        );
+}

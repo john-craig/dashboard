@@ -37,6 +37,10 @@ class Dashboard extends Component {
 
             {shouldDisplay ? (
                 <div class="root">
+                    {/* <div class="test">
+                        
+                    </div> */}
+
                     <LeftPanel/>
 
                     <MainPanel>
