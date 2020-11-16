@@ -1,7 +1,7 @@
-@function slope($xPos, $yPos){
-    $vanishing-height: 50vh;
-    $vanishing-width: 50vw;
+$vanishing-height: 50vh;
+$vanishing-width: 50vw;
 
+@function slope($xPos, $yPos){
     $slope: (($yPos - $vanishing-height) / 1vh) / (($xPos - $vanishing-width) / 1vw);
     @return $slope;
 }
@@ -13,11 +13,11 @@
     @return $hypotenuse
 }
 
-@function adjacent($xPos, $yPos, $distance){
+@function opposite($xPos, $yPos){
     $slope: slope($xPos, $yPos);
-    $adjacent: math.sin($slope) * $distance;
+    $opposite: math.tan($slope) * 100%;
 
-    @return $adjacent;
+    @return $opposite;
 }
 
 //To Do:
@@ -39,19 +39,53 @@
     which can then be plugged into the perspective-edges mixin below
 */
 
-@mixin perspective-edges($xPos, $yPos, $width, $height, $distance) {
-    // width: $width;
-    // height: $height - (adjacent($xPos, $yPos, $distance) + adjacent($xPos + $width, $yPos + $height, $distance));
+@function getPoint1X($xPos, $yPos, $width, $height){
+    $pointX: 0;
 
-    // border-left: $distance solid white;
+    @if($xPos < $vanishing-width and $yPos > $vanishing-height){
+        $pointX: opposite($xPos, $yPos + $height) + $xPos;
+    } @else {
+        $pointX: $xPos;
+    }
 
-    // border-top: hypotenuse($xPos, $yPos, $distance) solid transparent;
-    // border-bottom: hypotenuse($xPos + $width, $yPos + $height, $distance) solid transparent;
+    @return $pointX;
+}
+
+
+@function getPoint1Y($xpos, $yPos, $width, $height){
+    $pointY: 0;
+
+    @return $pointY;
+}
+
+
+@function getPoint2X($xPos, $yPos, $width, $height){
+    $pointX: $xPos + $width;
+
+    @if($pointX < $vanishing-width){
+
+    }
+
+    @return $pointX;
+}
+
+@function getPoint2Y($xPos, $yPos, $width, $height){
+    $pointX: $xPos + $width;
+
+    @if($pointX < $vanishing-width){
+
+    }
+
+    @return $pointX;
+}
+
+
+@mixin perspective-edges($xPos, $yPos, $width, $height) {
 
     clip-path: polygon(
-            0 0, 
-            100% 50%,
-            0 100%,
-            100% 100%
+            0% 0%, 
+            0% 100%,
+            100% 100%,
+            100% 0%
         );
 }
