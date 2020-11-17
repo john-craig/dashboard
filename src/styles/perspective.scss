@@ -1,3 +1,5 @@
+@use "sass:math";
+
 $vanishing-height: 50vh;
 $vanishing-width: 50vw;
 
@@ -62,21 +64,26 @@ $vanishing-width: 50vw;
 @function getPoint2X($xPos, $yPos, $width, $height){
     $pointX: $xPos + $width;
 
-    @if($pointX < $vanishing-width){
-
+    @if($pointX > $vanishing-width){
+        //Do stuff;
+    } @else {
+        $pointX: 100%;
     }
 
     @return $pointX;
 }
 
 @function getPoint2Y($xPos, $yPos, $width, $height){
-    $pointX: $xPos + $width;
+    $pointY: $yPos;
 
-    @if($pointX < $vanishing-width){
-
+    @if($pointY < $vanishing-height){
+        $opposite: opposite($xPos, $yPos);
+        $pointY: $opposite;
+    } @else {
+        $pointY: 0%;
     }
 
-    @return $pointX;
+    @return $pointY;
 }
 
 
@@ -84,8 +91,8 @@ $vanishing-width: 50vw;
 
     clip-path: polygon(
             0% 0%, 
-            0% 100%,
+            getPoint2X($xPos, $yPos, $width, $height) getPoint2Y($xPos, $yPos, $width, $height),
             100% 100%,
-            100% 0%
+            0% 1000%
         );
 }
