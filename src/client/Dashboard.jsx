@@ -1,5 +1,6 @@
 import { h, Component } from 'preact';
 import { RightPanel, LeftPanel, MainPanel } from './modules/Panel.jsx'
+import { Navigation } from './modules/Navigation.jsx';
 import { Tasklist } from './modules/Tasklist.jsx'
 
 class Dashboard extends Component {
@@ -43,9 +44,9 @@ class Dashboard extends Component {
 
                     <LeftPanel/>
 
-                    <MainPanel>
-                        <p>FAS</p>
-                    </MainPanel>
+                    <MainPanel
+                        top={<Navigation/>}
+                    />
 
                     <Tasklist/>
                 </div>

@@ -37,7 +37,9 @@ export class MainPanel extends Component {
         return (
             <div class="mainPanel">
                 <div class="prismSuperior">
-                    <div class="face">{this.props.children}</div>
+                    <div class="face">
+                        {this.props.top}
+                    </div>
                     <div class="bottom face"></div>
                 </div>
 
@@ -46,7 +48,7 @@ export class MainPanel extends Component {
                 <div class="prismInferior">
                     <div class="top face"></div>
                     <div class="face">
-                        {this.props.children}
+                        {this.props.bottom}
                     </div>
                 </div>
             </div>

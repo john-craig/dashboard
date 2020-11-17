@@ -52,7 +52,10 @@ export async function getLogTasksByID(request, token){
     ]
 
     //TODO
-    //figure this shit out
+    /*
+        Need a good way of both extracting information from a doc object in a usable format
+        as well as modifying a doc object using that format as necessary
+    */
 
     i = 0;
     var curHeader = headers[0];
