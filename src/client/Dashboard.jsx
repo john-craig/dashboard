@@ -42,6 +42,19 @@ class Dashboard extends Component {
                     <div class="left-middle"/>
                     <div class="left-lower"/>
 
+
+                    <div class="right-upper"/>
+                    <div class="right-middle"/>
+                    <div class="right-lower"/>
+
+                    <div class="top-right"/>
+                    <div class="top-middle"/>
+                    <div class="top-left"/>
+
+                    <div class="bottom-right"/>
+                    <div class="bottom-middle"/>
+                    <div class="bottom-left"/>
+
                     {/* <LeftPanel/>
 
                     <MainPanel

@@ -1,4 +1,5 @@
 @use "sass:math";
+@use "sass:map";
 
 $vanishing-height: 50vh;
 $vanishing-width: 50vw;
@@ -64,7 +65,7 @@ $vanishing-width: 50vw;
 @function getPoint2X($xPos, $yPos, $width, $height){
     $pointX: $xPos + $width;
 
-    @if($pointX > $vanishing-width){
+    @if($pointX < $vanishing-width){
         //Do stuff;
     } @else {
         $pointX: 100%;
@@ -76,7 +77,7 @@ $vanishing-width: 50vw;
 @function getPoint2Y($xPos, $yPos, $width, $height){
     $pointY: $yPos;
 
-    @if($pointY < $vanishing-height){
+    @if(math.abs(slope($xPos, $yPos)) <= 1){
         $opposite: opposite($xPos, $yPos);
         $pointY: $opposite;
     } @else {
@@ -86,13 +87,58 @@ $vanishing-width: 50vw;
     @return $pointY;
 }
 
+@function perspective-coordinates($xPos, $yPos, $width, $height){
+
+
+    $positions: (
+        x: $xPos,
+        y: $yPos
+    );
+
+    $dimensions: (
+        width: $width,
+        height: $height
+    );
+
+    $corners: (
+        p1: (
+            x: 0%,
+            y: 0%
+        ),
+        p2: (
+            x: 100%,
+            y: 0%
+        ),
+        p3: (
+            x: 100%,
+            y: 100%
+        ),
+        p4: (
+            x: 0%,
+            y: 100%
+        )
+    );
+
+    @return (
+        positions: $positions,
+        dimensions: $dimensions,
+        corners: $corners
+    );
+}
+
 
 @mixin perspective-edges($xPos, $yPos, $width, $height) {
+    $coordinates: perspective-coordinates($xPos, $yPos, $width, $height);
 
     clip-path: polygon(
-            0% 0%, 
-            getPoint2X($xPos, $yPos, $width, $height) getPoint2Y($xPos, $yPos, $width, $height),
-            100% 100%,
-            0% 1000%
+            map.get($coordinates, corners, p1, x) map.get($coordinates, corners, p1, y),
+            map.get($coordinates, corners, p2, x) map.get($coordinates, corners, p2, y),
+            map.get($coordinates, corners, p3, x) map.get($coordinates, corners, p3, y),
+            map.get($coordinates, corners, p4, x) map.get($coordinates, corners, p4, y)
         );
+    top: map.get($coordinates, positions, y);
+    left: map.get($coordinates, positions, x);
+    width: map.get($coordinates, dimensions, width);
+    height: map.get($coordinates, dimensions, height);
+    
 }
