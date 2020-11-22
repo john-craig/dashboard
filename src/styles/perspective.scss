@@ -5,7 +5,14 @@ $vanishing-height: 50vh;
 $vanishing-width: 50vw;
 
 @function slope($xPos, $yPos){
-    $slope: (($yPos - $vanishing-height) / 1vh) / (($xPos - $vanishing-width) / 1vw);
+    $slope: 0;
+
+    @if($xPos - $vanishing-width == 0){
+        $slope: undefined;
+    } @else {
+        $slope: (($yPos - $vanishing-height) / 1vh) / (($xPos - $vanishing-width) / 1vw);
+    }
+
     @return $slope;
 }
 
@@ -21,6 +28,33 @@ $vanishing-width: 50vw;
     $opposite: math.tan($slope) * 100%;
 
     @return $opposite;
+}
+
+@function relative-slope($xPos, $yPos, $width, $height){
+    $xOrigin: 0;
+    $yOrigin: 0;
+
+    @if($xPos < $vanishing-width and $xPos + $width > $vanishing-width ){
+        $xOrigin: $xPos + ($width / 2);
+    } @else{
+        @if($xPos < $vanishing-width){
+            $xOrigin: $xPos;
+        } @else {
+            $xOrigin: $xPos + $width;
+        }
+    }
+
+    @if($yPos < $vanishing-height and $yPos + $height > $vanishing-height ){
+        $yOrigin: $yPos + ($height / 2);
+    } @else{
+        @if($yPos < $vanishing-height){
+            $yOrigin: $yPos;
+        } @else {
+            $yOrigin: $yPos + $height;
+        }
+    }
+
+    @return slope($xOrigin, $yOrigin);
 }
 
 //To Do:
@@ -42,64 +76,7 @@ $vanishing-width: 50vw;
     which can then be plugged into the perspective-edges mixin below
 */
 
-@function getPoint1X($xPos, $yPos, $width, $height){
-    $pointX: 0;
-
-    @if($xPos < $vanishing-width and $yPos > $vanishing-height){
-        $pointX: opposite($xPos, $yPos + $height) + $xPos;
-    } @else {
-        $pointX: $xPos;
-    }
-
-    @return $pointX;
-}
-
-
-@function getPoint1Y($xpos, $yPos, $width, $height){
-    $pointY: 0;
-
-    @return $pointY;
-}
-
-
-@function getPoint2X($xPos, $yPos, $width, $height){
-    $pointX: $xPos + $width;
-
-    @if($pointX < $vanishing-width){
-        //Do stuff;
-    } @else {
-        $pointX: 100%;
-    }
-
-    @return $pointX;
-}
-
-@function getPoint2Y($xPos, $yPos, $width, $height){
-    $pointY: $yPos;
-
-    @if(math.abs(slope($xPos, $yPos)) <= 1){
-        $opposite: opposite($xPos, $yPos);
-        $pointY: $opposite;
-    } @else {
-        $pointY: 0%;
-    }
-
-    @return $pointY;
-}
-
-@function perspective-coordinates($xPos, $yPos, $width, $height){
-
-
-    $positions: (
-        x: $xPos,
-        y: $yPos
-    );
-
-    $dimensions: (
-        width: $width,
-        height: $height
-    );
-
+@function perspective-corners($xPos, $yPos, $width, $height){
     $corners: (
         p1: (
             x: 0%,
@@ -119,10 +96,100 @@ $vanishing-width: 50vw;
         )
     );
 
+    $slope: relative-slope($xPos, $yPos, $width, $height);
+
+    @if($slope < 1 or $slope > -1){
+        @if($xPos < $vanishing-width){
+            //Left quadrant
+            //p2y and p3y
+            $p2y: map.get($corners, p2, y) + opposite($xPos, $yPos);
+            $p3y: map.get($corners, p3, y) + opposite($xPos, $yPos + $height);
+
+            $corners: map.set($corners, p2, y, $p2y);
+            $corners: map.set($corners, p3, y, $p3y);
+        } @else {
+            //Right quadrant
+            //p1y and p4y
+            $p1y: map.get($corners, p1, y) - opposite($xPos + $width, $yPos);
+            $p4y: map.get($corners, p4, y) - opposite($xPos + $width, $yPos + $height);
+
+            $corners: map.set($corners, p1, y, $p1y);
+            $corners: map.set($corners, p4, y, $p4y);
+        }
+    }
+
+    @if($slope > 1 or $slope < -1){
+        @if($yPos < $vanishing-height){
+            //Upper quadrant
+            //p4x and p3x
+        } @else {
+            //Bottom quadrant
+            //p1x and p2x
+        }
+    }
+
+    // @if($slope == undefined){
+    //     //Exactly vertical
+    // }
+
+    // @if($slope == 0){
+    //     //Exactly horizontal
+    // }
+
+    @return $corners;
+}
+
+@function perspective-dimensions($xPos, $yPos, $width, $height){
+    $dimensions: (
+        width: $width,
+        height: $height
+    );
+
+    @if($xPos < $vanishing-width){
+        @if($yPos < $vanishing-height){
+            //Upper-left quadrant
+        } @else {
+            //Lower-left quadrant
+        }
+    } @else{
+        @if($yPos < $vanishing-height){
+            //Upper-right quadrant
+        } @else {
+            //Lower-right quadrant
+        }
+    }
+
+    @return $dimensions;
+}
+
+@function perspective-positions($xPos, $yPos, $width, $height){
+    $positions: (
+        x: $xPos,
+        y: $yPos
+    );
+
+    @if($xPos < $vanishing-width){
+        @if($yPos < $vanishing-height){
+            //Upper-left quadrant
+        } @else {
+            //Lower-left quadrant
+        }
+    } @else{
+        @if($yPos < $vanishing-height){
+            //Upper-right quadrant
+        } @else {
+            //Lower-right quadrant
+        }
+    }
+
+    @return $positions;
+}
+
+@function perspective-coordinates($xPos, $yPos, $width, $height){
     @return (
-        positions: $positions,
-        dimensions: $dimensions,
-        corners: $corners
+        positions: perspective-positions($xPos, $yPos, $width, $height),
+        dimensions: perspective-dimensions($xPos, $yPos, $width, $height),
+        corners: perspective-corners($xPos, $yPos, $width, $height)
     );
 }
 
