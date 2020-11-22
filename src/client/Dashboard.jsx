@@ -1,5 +1,6 @@
 import { h, Component } from 'preact';
-import { SidePanel, MainPanel } from './Panel.jsx'
+import { RightPanel, LeftPanel, MainPanel } from './modules/Panel.jsx'
+import { Navigation } from './modules/Navigation.jsx';
 import { Tasklist } from './modules/Tasklist.jsx'
 
 class Dashboard extends Component {
@@ -20,7 +21,7 @@ class Dashboard extends Component {
     handleKeyPress(event){
         var display = true
 
-        if (event.key) {
+        if (event.key == '/') {
             display = !this.state.shouldDisplay
         }
 
@@ -37,11 +38,30 @@ class Dashboard extends Component {
 
             {shouldDisplay ? (
                 <div class="root">
-                    <SidePanel/>
+                    <div class="left-upper"/>
+                    <div class="left-middle"/>
+                    <div class="left-lower"/>
 
-                    <MainPanel/>
 
-                    <Tasklist/>
+                    <div class="right-upper"/>
+                    <div class="right-middle"/>
+                    <div class="right-lower"/>
+
+                    <div class="top-right"/>
+                    <div class="top-middle"/>
+                    <div class="top-left"/>
+
+                    <div class="bottom-right"/>
+                    <div class="bottom-middle"/>
+                    <div class="bottom-left"/>
+
+                    {/* <LeftPanel/>
+
+                    <MainPanel
+                        top={<Navigation/>}
+                    />
+
+                    <Tasklist/> */}
                 </div>
             ): (
                 <div></div>

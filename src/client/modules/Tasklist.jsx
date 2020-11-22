@@ -2,12 +2,16 @@ import {
         h,
         Component
 } from 'preact';
+import {RightPanel} from './Panel'
+
 import {
     getCurrentLog, 
     getCurrentRecord, 
     getCurrentBudget,
     getCurrentRegimen,
-    getCurrentNutrition
+    getCurrentNutrition,
+
+    getLogTasksById
 } from '../utils/Middleware'
 
 export class Tasklist extends Component {
@@ -25,6 +29,10 @@ export class Tasklist extends Component {
         const currentBudget = (await getCurrentBudget()).body;
         const currentRegimen = (await getCurrentRegimen()).body;
         const currentNutrition = (await getCurrentNutrition()).body;
+
+        var logData = (await getLogTasksById(currentLog.id)).body
+
+        console.log(logData);
 
         this.setState({
             'log': currentLog,
@@ -44,7 +52,7 @@ export class Tasklist extends Component {
         var nutrition = this.state.nutrition
 
         return (
-            <div class="side panel">
+            <RightPanel>
                 <ul>
                     {log && 
                         <li><a href={log.webViewLink} target="_blank">Log</a></li>
@@ -62,7 +70,7 @@ export class Tasklist extends Component {
                         <li><a href={budget.webViewLink} target="_blank">Budget</a></li>
                     }
                 </ul>
-            </div>
+            </RightPanel>
         )
     }
 

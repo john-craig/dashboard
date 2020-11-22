@@ -42,3 +42,12 @@ export async function getCurrentRegimen(){
 export async function getCurrentNutrition(){
     return await sendMessage('getTodaysNutrition');
 }
+
+//
+ export async function getDocumentById(id){
+     return await sendMessage('getDocumentById', id);
+ }
+
+ export async function getLogTasksById(id){
+    return await sendMessage('getLogTasksById', id);
+}

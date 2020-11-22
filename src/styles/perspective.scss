@@ -1,0 +1,144 @@
+@use "sass:math";
+@use "sass:map";
+
+$vanishing-height: 50vh;
+$vanishing-width: 50vw;
+
+@function slope($xPos, $yPos){
+    $slope: (($yPos - $vanishing-height) / 1vh) / (($xPos - $vanishing-width) / 1vw);
+    @return $slope;
+}
+
+@function hypotenuse($xPos, $yPos, $distance){
+    $slope: slope($xPos, $yPos);
+    $hypotenuse: math.sin($slope) * $distance;
+
+    @return $hypotenuse
+}
+
+@function opposite($xPos, $yPos){
+    $slope: slope($xPos, $yPos);
+    $opposite: math.tan($slope) * 100%;
+
+    @return $opposite;
+}
+
+//To Do:
+/*
+    Basically, I'm going to need a series of functions like...
+        getPoint1X
+        getPoint1Y
+
+        getPoint2X
+        getPoint2Y
+
+        getPoint3X
+        getPoint3Y
+
+        getPoint4X
+        getPoint4Y
+    with each being able to accept the X, Y, width, height, and distance of a perspective trapezoid
+    and being able to return the corresponding position of each corner of that trapezoid
+    which can then be plugged into the perspective-edges mixin below
+*/
+
+@function getPoint1X($xPos, $yPos, $width, $height){
+    $pointX: 0;
+
+    @if($xPos < $vanishing-width and $yPos > $vanishing-height){
+        $pointX: opposite($xPos, $yPos + $height) + $xPos;
+    } @else {
+        $pointX: $xPos;
+    }
+
+    @return $pointX;
+}
+
+
+@function getPoint1Y($xpos, $yPos, $width, $height){
+    $pointY: 0;
+
+    @return $pointY;
+}
+
+
+@function getPoint2X($xPos, $yPos, $width, $height){
+    $pointX: $xPos + $width;
+
+    @if($pointX < $vanishing-width){
+        //Do stuff;
+    } @else {
+        $pointX: 100%;
+    }
+
+    @return $pointX;
+}
+
+@function getPoint2Y($xPos, $yPos, $width, $height){
+    $pointY: $yPos;
+
+    @if(math.abs(slope($xPos, $yPos)) <= 1){
+        $opposite: opposite($xPos, $yPos);
+        $pointY: $opposite;
+    } @else {
+        $pointY: 0%;
+    }
+
+    @return $pointY;
+}
+
+@function perspective-coordinates($xPos, $yPos, $width, $height){
+
+
+    $positions: (
+        x: $xPos,
+        y: $yPos
+    );
+
+    $dimensions: (
+        width: $width,
+        height: $height
+    );
+
+    $corners: (
+        p1: (
+            x: 0%,
+            y: 0%
+        ),
+        p2: (
+            x: 100%,
+            y: 0%
+        ),
+        p3: (
+            x: 100%,
+            y: 100%
+        ),
+        p4: (
+            x: 0%,
+            y: 100%
+        )
+    );
+
+    @return (
+        positions: $positions,
+        dimensions: $dimensions,
+        corners: $corners
+    );
+}
+
+
+@mixin perspective-edges($xPos, $yPos, $width, $height) {
+    $coordinates: perspective-coordinates($xPos, $yPos, $width, $height);
+
+    clip-path: polygon(
+            map.get($coordinates, corners, p1, x) map.get($coordinates, corners, p1, y),
+            map.get($coordinates, corners, p2, x) map.get($coordinates, corners, p2, y),
+            map.get($coordinates, corners, p3, x) map.get($coordinates, corners, p3, y),
+            map.get($coordinates, corners, p4, x) map.get($coordinates, corners, p4, y)
+        );
+    top: map.get($coordinates, positions, y);
+    left: map.get($coordinates, positions, x);
+    width: map.get($coordinates, dimensions, width);
+    height: map.get($coordinates, dimensions, height);
+    
+}

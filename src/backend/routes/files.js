@@ -1,4 +1,5 @@
-const requestor = require('../utils/request.js')
+const r = require('../utils/request.js')
+const q = require('../utils/query.js')
 
 // Methods
 
@@ -9,7 +10,7 @@ export function getFileByName(request, token){
 
     const url = "https://www.googleapis.com/drive/v3/files?" + query.toString()
 
-    return requestor.sendRequest(url, type, token, undefined)
+    return r.sendRequest(url, type, token, undefined)
 }
 
 export function getFileByID(request, token){
@@ -17,14 +18,14 @@ export function getFileByID(request, token){
     const query = new URLSearchParams("fields=*")
     const url = "https://www.googleapis.com/drive/v3/files/" + request.argument + '?' + query.toString()
 
-    return requestor.sendRequest(url, type, token, undefined)
+    return r.sendRequest(url, type, token, undefined)
 }
 
 export function getFiles(request, token){
     const type = "GET";
-    const url = "https://www.googleapis.com/drive/v3/files?" + buildQuery('name', 'contains', request.argument)
+    const url = "https://www.googleapis.com/drive/v3/files?" + q.buildQuery('name', 'contains', request.argument)
 
-    return requestor.sendRequest(url, type, token, undefined)
+    return r.sendRequest(url, type, token, undefined)
 }
 
 export async function getTodaysLog(request, token){
@@ -82,10 +83,10 @@ export async function getItemByDate(itemType, request, token){
     console.log("Getting a " + itemType)
 
     const type = "GET";
-    var url = "https://www.googleapis.com/drive/v3/files?" + buildQuery('name', 'contains', itemType + month)
+    var url = "https://www.googleapis.com/drive/v3/files?" + q.buildQuery('name', 'contains', itemType + month)
 
     //Start by getting all the files which match the number of the current month
-    var monthItems = (await requestor.sendRequest(url, type, token, undefined)).files
+    var monthItems = (await r.sendRequest(url, type, token, undefined)).files
 
     //Then filter the results based on whether the current day falls within the week range
     var weekItems = monthItems.filter(function(item){
@@ -121,12 +122,4 @@ function isWeekRange(name, day){
     }
 
     return isRange;
-}
-
-function buildQuery(term, operator, value){
-    const query = new URLSearchParams('q=p')
-
-    query.set('q', term + " " + operator + " '" + value + "'")
-
-    return query.toString()
 }

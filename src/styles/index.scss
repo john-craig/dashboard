@@ -1,0 +1,20 @@
+/* Body CSS */
+body {
+    background-image: url("../background.png");
+    //background-color: black;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+/* Div CSS */
+div.root {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    padding: 1%;
+    height: 850px;
+}
+
+p {
+    color: white
+}

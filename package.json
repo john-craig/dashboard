@@ -9,17 +9,18 @@
   "dependencies": {
     "express": "^4.17.1",
     "gapi-client": "0.0.3",
-    "preact": "^10.5.5",
+    "preact": "^10.5.7",
     "react-scripts": "^3.4.4",
-    "react-three-fiber": "^5.1.7",
+    "react-three-fiber": "^5.2.1",
     "regenerator-runtime": "^0.13.7",
+    "sass": "^1.29.0",
     "terser": "^5.3.8"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
     "@babel/plugin-transform-react-jsx": "^7.12.5",
     "@babel/preset-env": "^7.12.1",
-    "babel-loader": "^8.1.0",
+    "babel-loader": "^8.2.1",
     "coffee-loader": "^1.0.1",
     "coffeescript": "^2.5.1",
     "css-loader": "^4.3.0",

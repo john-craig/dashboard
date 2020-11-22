@@ -1,4 +1,5 @@
 const fileRoutes = require('./files.js')
+const docRoutes = require('./documents.js');
 
 export async function handleRoute(request, token){
     var response = undefined;
@@ -12,7 +13,10 @@ export async function handleRoute(request, token){
         "getTodaysRecord": fileRoutes.getTodaysRecord,
         "getTodaysBudget": fileRoutes.getTodaysBudget,
         "getTodaysRegimen": fileRoutes.getTodaysRegimen,
-        "getTodaysNutrition": fileRoutes.getTodaysNutrition
+        "getTodaysNutrition": fileRoutes.getTodaysNutrition,
+
+        "getDocumentById": docRoutes.getDocumentByID,
+        "getLogTasksById": docRoutes.getLogTasksByID
     }
 
     if(request.target in routes){
