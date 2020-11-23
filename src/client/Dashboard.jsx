@@ -38,7 +38,7 @@ class Dashboard extends Component {
 
             {shouldDisplay ? (
                 <div class="root">
-                    <div class="left-upper"/>
+                    {/* <div class="left-upper"/>
                     <div class="left-middle"/>
                     <div class="left-lower"/>
 
@@ -53,15 +53,15 @@ class Dashboard extends Component {
 
                     <div class="bottom-right"/>
                     <div class="bottom-middle"/>
-                    <div class="bottom-left"/>
+                    <div class="bottom-left"/> */}
 
-                    {/* <LeftPanel/>
+                    <LeftPanel/>
 
                     <MainPanel
                         top={<Navigation/>}
                     />
 
-                    <Tasklist/> */}
+                    <Tasklist/>
                 </div>
             ): (
                 <div></div>

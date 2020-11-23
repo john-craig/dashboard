@@ -97,6 +97,7 @@ $vanishing-width: 50vw;
     );
 
     $slope: relative-slope($xPos, $yPos, $width, $height);
+    //$slope: slope($xPos, $yPos);
 
     @if($slope < 1 or $slope > -1){
         @if($xPos < $vanishing-width){
@@ -122,9 +123,19 @@ $vanishing-width: 50vw;
         @if($yPos < $vanishing-height){
             //Upper quadrant
             //p4x and p3x
+            $p4x: map.get($corners, p4, x) - opposite($xPos, $yPos);
+            $p3x: map.get($corners, p3, x) - opposite($xPos + $width, $yPos);
+
+            $corners: map.set($corners, p4, x, $p4x);
+            $corners: map.set($corners, p3, x, $p3x);
         } @else {
             //Bottom quadrant
             //p1x and p2x
+            $p1x: map.get($corners, p1, x) + opposite($xPos, $yPos + $height);
+            $p2x: map.get($corners, p2, x) + opposite($xPos + $width, $yPos + $height);
+
+            $corners: map.set($corners, p1, x, $p1x);
+            $corners: map.set($corners, p2, x, $p2x);
         }
     }
 

@@ -1,10 +1,10 @@
 @use "./perspective.scss";
 
-$sidePrismHeight: 800px;
-$topPrismHeight: 100px;
-$bottomPrismHeight: 300px;
+$sidePrismHeight: 95%;
+$topPrismHeight: 10%;
+$bottomPrismHeight: 30%;
 
-$verticalFaceHeight: 50px;
+$verticalFaceHeight: 50%;
 
 .sidePanel {
     width: 25%;
@@ -77,18 +77,16 @@ $verticalFaceHeight: 50px;
 }
 
 .bottom {
-    transform: rotateX(-45deg) translateY(-22.5%);
-    width: 97.75%;
+    transform: rotateX(-45deg) translateY(-23%);
+    width: 99%;
     height: $verticalFaceHeight;
     align-self: center;
 }
-.frontSuperior {
-    //height: 50%
-}
+.frontSuperior {}
 
 .top {
-    transform: rotateX(45deg) translateY(32%); 
-    width: 96.85%;
+    transform: rotateX(45deg) translateY(25%); 
+    width: 96%;
     height: $verticalFaceHeight;
     align-self: center;
 }
@@ -99,123 +97,3 @@ $verticalFaceHeight: 50px;
 
 .right {transform: rotateY(45deg) translateX(50%);}
 .frontDexter {transform: translateX(50%)}
-
-//An attempt at trapezoid
-
-$width: 10vw;
-$height: 10vh;
-
-
-$left-upper-X: 5vw;
-$left-upper-Y: 25vh;
-
-.left-upper {
-    position: absolute;
-    background-color: white;
-    @include perspective.perspective-edges($left-upper-X, $left-upper-Y, $width, $height);
-}
-
-
-$left-middle-X: 5vw;
-$left-middle-Y: 45vh;
-
-.left-middle {
-    position: absolute;
-    background-color: white;
-    @include perspective.perspective-edges($left-middle-X, $left-middle-Y, $width, $height);
-}
-
-$left-lower-X: 5vw;
-$left-lower-Y: 75vh;
-
-.left-lower {
-    position: absolute;
-    background-color: white;
-    @include perspective.perspective-edges($left-lower-X, $left-lower-Y, $width, $height);
-}
-
-
-$right-upper-X: 85vw;
-$right-upper-Y: 25vh;
-
-.right-upper {
-    position: absolute;
-    background-color: white;
-    @include perspective.perspective-edges($right-upper-X, $right-upper-Y, $width, $height);
-}
-
-
-$right-middle-X: 85vw;
-$right-middle-Y: 45vh;
-
-.right-middle {
-    position: absolute;
-    background-color: white;
-    @include perspective.perspective-edges($right-middle-X, $right-middle-Y, $width, $height);
-}
-
-$right-lower-X: 85vw;
-$right-lower-Y: 75vh;
-
-.right-lower {
-    position: absolute;
-    background-color: white;
-    @include perspective.perspective-edges($right-lower-X, $right-lower-Y, $width, $height);
-}
-
-$top-left-X: 15vw;
-$top-left-Y: 5vh;
-
-.top-left {
-    position: absolute;
-    background-color: white;
-    @include perspective.perspective-edges($top-left-X, $top-left-Y, $width, $height);
-}
-
-
-$top-middle-X: 45vw;
-$top-middle-Y: 5vh;
-
-.top-middle {
-    position: absolute;
-    background-color: white;
-    @include perspective.perspective-edges($top-middle-X, $top-middle-Y, $width, $height);
-}
-
-$top-right-X: 75vw;
-$top-right-Y: 5vh;
-
-.top-right {
-    position: absolute;
-    background-color: white;
-    @include perspective.perspective-edges($top-right-X, $top-right-Y, $width, $height);
-}
-
-
-$bottom-left-X: 15vw;
-$bottom-left-Y: 85vh;
-
-.bottom-left {
-    position: absolute;
-    background-color: white;
-    @include perspective.perspective-edges($bottom-left-X, $bottom-left-Y, $width, $height);
-}
-
-
-$bottom-middle-X: 45vw;
-$bottom-middle-Y: 85vh;
-
-.bottom-middle {
-    position: absolute;
-    background-color: white;
-    @include perspective.perspective-edges($bottom-middle-X, $bottom-middle-Y, $width, $height);
-}
-
-$bottom-right-X: 75vw;
-$bottom-right-Y: 85vh;
-
-.bottom-right {
-    position: absolute;
-    background-color: white;
-    @include perspective.perspective-edges($bottom-right-X, $bottom-right-Y, $width, $height);
-}
