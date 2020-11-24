@@ -41,7 +41,7 @@ export class Navigation extends Component {
     render(){
         return (
             <div>
-                <span class="navbar">
+                <span class="nav">
                     {this.state.dropdowns.map(value => {
                         return <Dropdown 
                             title={value.title}
@@ -60,7 +60,7 @@ function Dropdown(props){
     const linkNames = props.linkNames;
     const linkTargets = props.linkTargets;
 
-    return <div>
+    return <div style={{display: "inline"}}>
         <div class="dropdown">
         <button class="dropbtn">{title}</button>
             <div class="dropdown-content">
