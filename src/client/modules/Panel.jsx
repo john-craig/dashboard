@@ -1,5 +1,6 @@
 import { h, Component } from 'preact';
-import '../../styles/panels.scss'
+import '../../styles/panels.scss';
+import '../../styles/trapezoids.scss';
 
 export class RightPanel extends Component {
     render(){
@@ -22,6 +23,12 @@ export class LeftPanel extends Component {
         return (
             <div class="sidePanel">
                 <div class="prismDexter">
+                    {/* <div class="face">
+
+                    </div>
+                    <div class="face left-middle">
+
+                    </div> */}
                     <div class="face frontDexter">
                         {this.props.children}
                     </div>

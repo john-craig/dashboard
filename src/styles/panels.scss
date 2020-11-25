@@ -70,6 +70,7 @@ $verticalFaceHeight: 50%;
     background: rgba(100,100,100,0.5);
     text-align: center;
     line-height: 2em;
+    border: 1px solid lightgray;
   }
 
 .middle {
@@ -77,20 +78,26 @@ $verticalFaceHeight: 50%;
 }
 
 .bottom {
-    transform: rotateX(-45deg) translateY(-23%);
-    width: 99%;
+    transform: rotateX(-45deg) translateY(-23%) translateX(0.25%);
+    width: 98.75%;
+    //width: 100%;
     height: $verticalFaceHeight;
     align-self: center;
 }
-.frontSuperior {}
+.frontSuperior {
+    align-self: center;
+}
 
 .top {
-    transform: rotateX(45deg) translateY(25%); 
+    transform: rotateX(45deg) translateY(25%) translateX(0.25%); 
     width: 96%;
+    //width: 100%;
     height: $verticalFaceHeight;
     align-self: center;
 }
-.frontInferior {}
+.frontInferior {
+    align-self: center;
+}
 
 .left {transform: rotateY(-45deg) translateX(-50%);}
 .frontSinister {transform: translateX(-50%)}
