@@ -43,7 +43,6 @@ export class LinkPanel extends Component {
                 <LinkColumn
                     header="Financial"
                 />
-
             </div>
         )
     }
