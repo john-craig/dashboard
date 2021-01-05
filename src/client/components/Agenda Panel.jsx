@@ -6,6 +6,9 @@ import {
     getCurrentRegimen,
     getCurrentNutrition,
 
+    getDocumentById,
+    getLogTasksById,
+
     getTasks
 } from '../utils/Middleware'
 
@@ -28,6 +31,8 @@ export class AgendaPanel extends Component {
         // var taskData = (await getTasks())
 
         // console.log(taskData)
+        var logDocument = (await getLogTasksById(currentLog.id)).body
+        console.log(logDocument)
 
         this.setState({
             'log': currentLog,

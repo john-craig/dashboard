@@ -24,7 +24,11 @@ export class LinkPanel extends Component {
             },
             {
                 url: "https://www.instagram.com/",
-                text: "Instragram"
+                text: "Instagram"
+            },
+            {
+                url: "https://www.reddit.com/",
+                text: "Reddit"
             }
         ]
 
@@ -42,7 +46,7 @@ export class LinkPanel extends Component {
                 text: "Twitch"
             },
             {
-                url: "pinterest.com",
+                url: "https://www.pinterest.com",
                 text: "Pinterest"
             }
         ]
