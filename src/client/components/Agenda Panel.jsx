@@ -31,7 +31,8 @@ export class AgendaPanel extends Component {
         // var taskData = (await getTasks())
 
         // console.log(taskData)
-        var logDocument = (await getLogTasksById(currentLog.id)).body
+        //var logDocument = (await getDocumentById(currentLog.id)).body
+        //var logDocument = (await getLogTasksById(currentLog.id)).body
         console.log(logDocument)
 
         this.setState({

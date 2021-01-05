@@ -29,3 +29,67 @@ export function getBodySections(body){
 
     return sections
 }
+
+//For updating/writing Documents
+/*
+    Overall
+        -the documentId and revisionId will both need to be obtained
+
+    POST https://docs.googleapis.com/v1/documents/{documentId}:batchUpdate
+
+    Update object: 
+    {
+        "requests": [
+            One or more Request object(s), see below
+        ],
+        "writeControl": {
+            "targetRevisionId": revisionId
+        }
+    }
+*/
+/*
+    Inserting New Text
+        -if inserted at a position that had a bullet point, will be contained by that bullet point
+
+    Request object:
+    
+    "insertText" : {
+        "text": string,
+        "location": {
+            {
+                "index": integer
+            }
+        }
+    }
+
+
+    See more: https://developers.google.com/docs/api/reference/rest/v1/documents/request#InsertTextRequest
+*/
+/*
+    Deleting Content
+
+    Request object:
+    "deleteContentRange": {
+        "range": {
+            "startIndex": integer,
+            "endIndex": integer
+        }
+    }
+
+    See More: https://developers.google.com/docs/api/reference/rest/v1/documents/request#DeleteContentRangeRequest 
+*/
+/*
+    Creating a Paragraph Bullet
+
+    See more: https://developers.google.com/docs/api/reference/rest/v1/documents/request#CreateParagraphBulletsRequest
+    Also:     https://developers.google.com/docs/api/reference/rest/v1/documents/request#BulletGlyphPreset 
+*/
+/*
+    Update Paragraph Style
+
+    See more: https://developers.google.com/docs/api/reference/rest/v1/documents/request#UpdateParagraphStyleRequest 
+    Also:     https://developers.google.com/docs/api/reference/rest/v1/documents#ParagraphStyle 
+*/
+/*
+    For use later: '✓'
+*/

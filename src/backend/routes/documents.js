@@ -10,7 +10,6 @@ export function getDocumentByID(request, token){
 }
 
 export async function getLogTasksByID(request, token){
-    console.log("FAS")
     const document = (await getDocumentByID(request, token))
 
     var sections = doc.getBodySections(document.body)
