@@ -30,6 +30,33 @@ export function getBodySections(body){
     return sections
 }
 
+
+export function setBodyContent(content, body){
+    var string = content.string
+    var index = content.index
+
+    var startIndex = body.content[index].startIndex
+    var endIndex = body.content[index].endIndex
+    
+    var requests = [{
+        "deleteContentRange": {
+            "range": {
+                "startIndex": startIndex,
+                "endIndex": endIndex - 1
+            }
+        }
+    },
+    {
+        "insertText" : {
+            "text": string,
+            "location": {
+                "index": startIndex
+            }
+        }
+    }]
+
+    return requests
+}
 //For updating/writing Documents
 /*
     Overall
@@ -56,9 +83,7 @@ export function getBodySections(body){
     "insertText" : {
         "text": string,
         "location": {
-            {
-                "index": integer
-            }
+            "index": integer
         }
     }
 
