@@ -11,6 +11,7 @@ import {
 
     getTasks
 } from '../utils/Middleware'
+import '../../styles/tabs.scss'
 
 export class AgendaPanel extends Component {
     constructor(props){
@@ -27,18 +28,18 @@ export class AgendaPanel extends Component {
         const currentNutrition = (await getCurrentNutrition()).body;
 
         // var taskData = (await getTasks())
-
         // console.log(taskData)
-        var logDocument = (await getDocumentById(currentLog.id)).body
-        //var logDocument = (await getLogTasksById(currentLog.id)).body
-        console.log(logDocument)
+
+        var logSections = (await getLogTasksById(currentLog.id)).body
 
         this.setState({
             'log': currentLog,
             'record': currentRecord,
             'budget': currentBudget,
             'regimen': currentRegimen,
-            'nutrition': currentNutrition
+            'nutrition': currentNutrition,
+
+            'sections': logSections
         })
     }
 
@@ -48,6 +49,13 @@ export class AgendaPanel extends Component {
         var budget = this.state.budget
         var regimen = this.state.regimen
         var nutrition = this.state.nutrition
+
+        var sections = this.state.sections
+        var day = new Date().getDay()
+
+        var monthSection = sections ? (sections[0].shift()) : null
+        var weekSection = sections ? (sections[1]) : null
+        var daySection = sections? (sections[day + 1]) : null
 
         return(
             <div class="agenda panel">
@@ -73,7 +81,18 @@ export class AgendaPanel extends Component {
                         </ul>
                     </div>
                     <div>
-                        Hello World!
+                        {monthSection && <div>
+                            <p>Month Goals: </p>
+                            <ul>
+                                <li>{monthSection[1]}</li>
+                            </ul>
+                        </div>}
+                        {weekSection && <div>
+                            <p>Week Objectives: </p>
+                            <ul>
+                                <li>{weekSection[1]}</li>
+                            </ul>
+                        </div>}
                     </div>
                 </TabSet>
             </div>
