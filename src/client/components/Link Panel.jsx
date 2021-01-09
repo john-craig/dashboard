@@ -53,8 +53,8 @@ export class LinkPanel extends Component {
 
         const productLinks = [
             {
-                url: "",
-                text: ""
+                url: "https://trello.com/",
+                text: "Trello"
             }
         ]
 

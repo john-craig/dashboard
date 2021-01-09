@@ -11,87 +11,134 @@ import {
 
     getTasks
 } from '../utils/Middleware'
+
 import '../../styles/tabs.scss'
+import '../../styles/agenda.scss'
 
 export class AgendaPanel extends Component {
     constructor(props){
         super(props)
 
-        
+        this.setLedgerData = this.setLedgerData.bind(this)
     }
 
     async componentDidMount(){
-        const currentLog = (await getCurrentLog()).body;
-        const currentRecord = (await getCurrentRecord()).body;
-        const currentBudget = (await getCurrentBudget()).body;
-        const currentRegimen = (await getCurrentRegimen()).body;
-        const currentNutrition = (await getCurrentNutrition()).body;
+        await this.setLedgerData()
+        await this.setAgendaData()
+    }
 
-        // var taskData = (await getTasks())
-        // console.log(taskData)
-
-        var logSections = (await getLogTasksById(currentLog.id)).body
+    async setLedgerData(){
+        var ledger = {
+            'log': (await getCurrentLog()).body,
+            'record': (await getCurrentRecord()).body,
+            'budget': (await getCurrentBudget()).body,
+            'regimen': (await getCurrentRegimen()).body,
+            'nutrition': (await getCurrentNutrition()).body
+        }
 
         this.setState({
-            'log': currentLog,
-            'record': currentRecord,
-            'budget': currentBudget,
-            'regimen': currentRegimen,
-            'nutrition': currentNutrition,
+            'ledger': ledger
+        })
+    }
 
-            'sections': logSections
+    async setAgendaData(){
+        var logId = this.state.ledger.log.id
+        
+        var logSections = (await getLogTasksById(logId)).body
+        var day = new Date().getDay()
+
+        var agendaObj = {
+            'month': [],
+            'week': [],
+            'day': [],
+        }
+
+        //Break sections down into individual arrays
+        var monthSection = logSections[0]
+
+        //Shift out a starting empty string
+        if(monthSection[0] == ""){
+            monthSection.shift()
+        }
+
+        //Push everything into the month article of the object
+        for(var i=1;i<monthSection.length;i++){
+            agendaObj['month'].push(monthSection[i].trim())
+        }
+
+        //Handle week data
+        var weekSection = logSections[1]
+        
+        //Push everything into the week article of the object
+        for(var i=1;i<weekSection.length;i++){
+            agendaObj['week'].push(weekSection[i].trim())
+        }
+
+        //var daySection = logSections[day + 1]
+        var daySection = logSections[3]
+
+        //Push corresponding items into the day article of the object
+        var isComplete = true;
+        for(var i=2;i<daySection.length;i++){
+            if(daySection[i].includes('Task')){
+                isComplete = false;
+                i++;
+            }
+
+            if(!isComplete){
+                agendaObj['day'].push(daySection[i].trim())
+            }
+        }
+
+        this.setState({
+            'agenda': agendaObj
         })
     }
 
     render(){
-        var log = this.state.log
-        var record = this.state.record
-        var budget = this.state.budget
-        var regimen = this.state.regimen
-        var nutrition = this.state.nutrition
-
-        var sections = this.state.sections
-        var day = new Date().getDay()
-
-        var monthSection = sections ? (sections[0].shift()) : null
-        var weekSection = sections ? (sections[1]) : null
-        var daySection = sections? (sections[day + 1]) : null
+        var ledger = this.state.ledger
+        var agenda = this.state.agenda
 
         return(
             <div class="agenda panel">
 
-                <TabSet tabHeaders={["Ledger", "Tasks"]}>
+                <TabSet tabHeaders={["Ledger", "Agenda"]}>
                     <div>
+                        {ledger && 
                         <ul>
-                            {log && 
-                                <li><a href={log.webViewLink} target="_blank">Log</a></li>
-                            }
-                            {record && 
-                                <li>
-                                    <a href={record.webViewLink} target="_blank">Record</a>
-                                    <ul>
-                                        {regimen && <li><a href={regimen.webViewLink} target="_blank">Regimen</a></li>}
-                                        {nutrition && <li><a href={nutrition.webViewLink} target="_blank">Nutrition</a></li>}
-                                    </ul>
-                                </li>
-                            }
-                            {budget && 
-                                <li><a href={budget.webViewLink} target="_blank">Budget</a></li>
-                            }
-                        </ul>
+                            <li><a href={ledger.log.webViewLink} target="_blank">Log</a></li>
+                            <li>
+                                <a href={ledger.record.webViewLink} target="_blank">Record</a>
+                                <ul>
+                                    <li><a href={ledger.regimen.webViewLink} target="_blank">Regimen</a></li>
+                                    <li><a href={ledger.nutrition.webViewLink} target="_blank">Nutrition</a></li>
+                                </ul>
+                            </li>
+                            <li><a href={ledger.budget.webViewLink} target="_blank">Budget</a></li>
+                        </ul>}
                     </div>
                     <div>
-                        {monthSection && <div>
+                        {agenda && <div>
                             <p>Month Goals: </p>
-                            <ul>
-                                <li>{monthSection[1]}</li>
-                            </ul>
-                        </div>}
-                        {weekSection && <div>
+                            <ul>{
+                                agenda['month'].map(elem => {
+                                    return <li>{elem}</li>
+                                })
+                            }</ul>
+
                             <p>Week Objectives: </p>
-                            <ul>
-                                <li>{weekSection[1]}</li>
-                            </ul>
+                            <ul>{
+                                agenda['week'].map(elem => {
+                                    return <li>{elem}</li>
+                                })
+                            }</ul>
+
+                            <p>Day Tasks: </p>
+                            <ul>{
+                                agenda['day'].map(elem => {
+                                    return <li>{elem}</li>
+                                })
+                            }</ul>
                         </div>}
                     </div>
                 </TabSet>
