@@ -11,7 +11,7 @@ import {
     getCurrentRegimen,
     getCurrentNutrition,
 
-    getLogTasksById
+    getTasks
 } from '../utils/Middleware'
 
 export class Tasklist extends Component {
@@ -30,9 +30,9 @@ export class Tasklist extends Component {
         const currentRegimen = (await getCurrentRegimen()).body;
         const currentNutrition = (await getCurrentNutrition()).body;
 
-        var logData = (await getLogTasksById(currentLog.id)).body
+        var taskData = (await getTasks())
 
-        console.log(logData);
+        console.log(taskData)
 
         this.setState({
             'log': currentLog,

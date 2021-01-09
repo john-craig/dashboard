@@ -1,5 +1,6 @@
 const fileRoutes = require('./files.js')
 const docRoutes = require('./documents.js');
+const taskRoutes = require('./tasks.js');
 
 export async function handleRoute(request, token){
     var response = undefined;
@@ -16,7 +17,10 @@ export async function handleRoute(request, token){
         "getTodaysNutrition": fileRoutes.getTodaysNutrition,
 
         "getDocumentById": docRoutes.getDocumentByID,
-        "getLogTasksById": docRoutes.getLogTasksByID
+        "getLogTasksById": docRoutes.getLogTasksByID,
+
+        "getTasks": taskRoutes.getTasks,
+        "getTaskLists": taskRoutes.getTaskLists
     }
 
     if(request.target in routes){

@@ -1,7 +1,6 @@
 import { h, Component } from 'preact';
-import { RightPanel, LeftPanel, MainPanel } from './modules/Panel.jsx'
-import { Navigation } from './modules/Navigation.jsx';
-import { Tasklist } from './modules/Tasklist.jsx'
+import {LinkPanel}  from './components/Link Panel.jsx';
+import {AgendaPanel} from './components/Agenda Panel.jsx';
 
 class Dashboard extends Component {
     constructor(props){
@@ -38,30 +37,8 @@ class Dashboard extends Component {
 
             {shouldDisplay ? (
                 <div class="root">
-                    {/* <div class="left-upper"/>
-                    <div class="left-middle"/>
-                    <div class="left-lower"/>
-
-
-                    <div class="right-upper"/>
-                    <div class="right-middle"/>
-                    <div class="right-lower"/>
-
-                    <div class="top-right"/>
-                    <div class="top-middle"/>
-                    <div class="top-left"/>
-
-                    <div class="bottom-right"/>
-                    <div class="bottom-middle"/>
-                    <div class="bottom-left"/> */}
-
-                    <LeftPanel/>
-
-                    <MainPanel
-                        top={<Navigation/>}
-                    />
-
-                    <Tasklist/>
+                    <LinkPanel/>
+                    <AgendaPanel/>
                 </div>
             ): (
                 <div></div>
