@@ -1,6 +1,6 @@
 import { h, Component } from 'preact';
-import {LinkPanel}  from './components/Link Panel.jsx';
-import {AgendaPanel} from './components/Agenda Panel.jsx';
+import {LinkPanel}  from './components/LinkPanel.jsx';
+import {ViewPanel} from './components/ViewPanel.jsx';
 
 class Dashboard extends Component {
     constructor(props){
@@ -38,7 +38,7 @@ class Dashboard extends Component {
             {shouldDisplay ? (
                 <div class="root">
                     <LinkPanel/>
-                    <AgendaPanel/>
+                    <ViewPanel/>
                 </div>
             ): (
                 <div></div>

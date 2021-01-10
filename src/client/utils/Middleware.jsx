@@ -23,6 +23,7 @@ export async function sendMessage(target, argument=undefined, body=undefined){
 
 /* Request particulars */
 
+//Drive functions
 export async function getCurrentLog(){
     return await sendMessage('getTodaysLog');
 }
@@ -43,7 +44,7 @@ export async function getCurrentNutrition(){
     return await sendMessage('getTodaysNutrition');
 }
 
-//
+//Document Section functions
  export async function getDocumentById(id){
      return await sendMessage('getDocumentById', id);
  }
@@ -52,7 +53,7 @@ export async function getCurrentNutrition(){
     return await sendMessage('getLogTasksById', id);
 }
 
-
+//Task functions
 export async function getTaskLists(){
     return await sendMessage('getTaskLists');
 }

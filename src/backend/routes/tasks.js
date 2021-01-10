@@ -6,9 +6,9 @@ const q = require('../utils/query.js')
 export async function getTasks(request, token){
     const type = "GET";
     const taskLists = (await getTaskLists(undefined, token));
-    var taskListId = taskLists.body.items[0].id
+    var taskListId = taskLists.items[0].id
 
-    const url = "https://tasks.googleapis.com/tasks/v1/users/@me/lists/" + taskListId + "/tasks"
+    const url = "https://tasks.googleapis.com/tasks/v1/lists/" + taskListId + "/tasks"
 
     return r.sendRequest(url, type, token, undefined)
 }
