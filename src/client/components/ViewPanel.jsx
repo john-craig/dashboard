@@ -9,17 +9,46 @@ import {
 } from '../utils/Middleware'
 
 import '../../styles/tabs.scss'
-import '../../styles/agenda.scss'
+import '../../styles/view.scss'
 
 export class ViewPanel extends Component {
     constructor(props){
         super(props)
 
-        //this.setUnassignedData = this.setUnassignedData.bind(this)
+        this.state = {
+            date: new Date()
+        }
+
+        this.onDateChange = this.onDateChange.bind(this)
+        this.onLedgerChange = this.onLedgerChange.bind(this)
+        this.onAgendaChange = this.onAgendaChange.bind(this)
+        this.onUnassignedChange = this.onUnassignedChange.bind(this)
+
+        this.setUnassignedData = this.setUnassignedData.bind(this)
     }
 
-    async componentDidMount(){
-        await this.setUnassignedData()
+    async onDateChange(date, callback){
+        this.setState({
+            'date': date
+        }, callback)
+    }
+
+    async onLedgerChange(ledger){
+        this.setState({
+            'ledger': ledger
+        })
+    }
+
+    async onAgendaChange(agenda){
+        this.setState({
+            'agenda': agenda
+        })
+    }
+
+    async onUnassignedChange(unassigned){
+        this.setState({
+            'unassigned': unassigned
+        })
     }
 
     async setUnassignedData(){
@@ -31,8 +60,10 @@ export class ViewPanel extends Component {
     }
 
     render(){
-        // var ledger = this.state.ledger
-        // var agenda = this.state.agenda
+        var date = this.state.date
+
+        var ledger = this.state.ledger
+        var agenda = this.state.agenda
         var unassigned = this.state.unassigned
 
         var menuItem = {
@@ -46,10 +77,21 @@ export class ViewPanel extends Component {
             <div class="agenda panel">
                 <TabSet tabHeaders={["Ledger", "Agenda", "Unassigned"]}>
                     <div>
-                        <LedgerTab/>
+                        <LedgerTab 
+                            ledger={ledger} 
+                            date={date}
+                            onDateChange={this.onDateChange}
+                            onLedgerChange={this.onLedgerChange}
+                        />
                     </div>
                     <div>
-                        <AgendaTab/>
+                        {ledger && <AgendaTab 
+                            log={ledger.log}
+                            agenda={agenda}
+                            date={date}
+                            onDateChange={this.onDateChange}
+                            onAgendaChange={this.onAgendaChange}
+                        />}
                     </div>
                     <div>
                         {unassigned && <ul>{

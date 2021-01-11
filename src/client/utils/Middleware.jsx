@@ -24,6 +24,10 @@ export async function sendMessage(target, argument=undefined, body=undefined){
 /* Request particulars */
 
 //Drive functions
+export async function getFileByName(name){
+    return await sendMessage('getFileByName', name)
+}
+
 export async function getCurrentLog(){
     return await sendMessage('getTodaysLog');
 }

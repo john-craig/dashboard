@@ -7,6 +7,7 @@ export function getFileByName(request, token){
     const type = "GET";
     const query = new URLSearchParams('q=p');
     query.set('q', "name = '" + request.argument + "'")
+    query.append('fields', '*')
 
     const url = "https://www.googleapis.com/drive/v3/files?" + query.toString()
 

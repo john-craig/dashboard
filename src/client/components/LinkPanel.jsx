@@ -27,6 +27,10 @@ export class LinkPanel extends Component {
                 text: "Instagram"
             },
             {
+                url: "https://twitter.com",
+                text: "Twitter"
+            },
+            {
                 url: "https://www.reddit.com/",
                 text: "Reddit"
             }

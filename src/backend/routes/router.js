@@ -8,7 +8,7 @@ export async function handleRoute(request, token){
     console.log("Handling a route.")
 
     const routes = {
-        "getFile": fileRoutes.getFileByName,
+        "getFileByName": fileRoutes.getFileByName,
         "getFiles": fileRoutes.getFiles,
         "getTodaysLog": fileRoutes.getTodaysLog,
         "getTodaysRecord": fileRoutes.getTodaysRecord,

@@ -50,7 +50,7 @@ export default class ListItem extends Component {
                         {this.state.menuOpen && <div class="menu">
                             {
                                 labels.map(function(label, index){
-                                    return <button class="menuButton" onClick={functions[index]}>
+                                    return <button class="menuButton" onClick={(e)=>functions[index](e)}>
                                         {label}
                                     </button>
                                 })
