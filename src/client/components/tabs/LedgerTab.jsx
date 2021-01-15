@@ -26,18 +26,28 @@ export default class LedgerTab extends Component {
     async handleLedger(){
         var weekRange = this.getWeekRange()
 
-        var ledger = {}
-        var files = [
+        const files = [
             "Log", "Record", "Regimen", "Nutrition", "Budget"
         ]
+        var ledger = localStorage.getItem(weekRange)
+        console.log(ledger)
 
-        for(var i=0;i<files.length;i++){
-            var keyName = files[i].toLowerCase()
-            var fileName = files[i] + " " + weekRange
+        if(ledger == null){
+            ledger = {}
 
-            ledger[keyName] = (await getFileByName(fileName)).body.files[0]
+            for(var i=0;i<files.length;i++){
+                var keyName = files[i].toLowerCase()
+                var fileName = files[i] + " " + weekRange
+    
+                ledger[keyName] = (await getFileByName(fileName)).body.files[0]
+            }
+
+            localStorage.setItem(weekRange, JSON.stringify(ledger))
+        } else {
+            ledger = JSON.parse(ledger)
         }
 
+        console.log(ledger)
         this.props.onLedgerChange(ledger)
     }
 
@@ -90,7 +100,6 @@ export default class LedgerTab extends Component {
 
         //this week's friday falls in the next month
         if(curFriday > numDays){
-            var nextNumDays = new Date(year, month + 2, 0).getDate();
             var nextMonth = new Date(year, month + 2, 0).getMonth();
 
             weekString = weekString + (nextMonth + 1).toString() + "/" + (curFriday - numDays).toString()
@@ -120,7 +129,21 @@ export default class LedgerTab extends Component {
                         class="ledgerHeader"
                         onClick={this.lastWeek}
                     >&#10594;</button>
+
+                    <button
+                        class="ledgerHeader"
+                    >
+                        ⌛︎
+                    </button>
+
                     <h3 class="ledgerHeader">{weekString}</h3>
+
+                    <button
+                        class="ledgerHeader"
+                    >
+                        🗓︎
+                    </button>
+
                     <button 
                         class="ledgerHeader"
                         onClick={this.nextWeek}

@@ -118,8 +118,6 @@ export default class AgendaTab extends Component {
             'functions': [
                 function(e){
                     var text = e.path[2].innerText
-
-                    console.log(text)
                 }
             ]
         }
@@ -134,9 +132,21 @@ export default class AgendaTab extends Component {
                         class="agendaHeader"
                         onClick={this.lastDay}
                     >&#10594;</button>
+
+                    <button
+                        class="agendaHeader"
+                    >
+                        ⌛︎
+                    </button>
                     
                     <h3 class="agendaHeader">{dateString}</h3>
                     
+                    <button
+                        class="agendaHeader"
+                    >
+                        🗓︎
+                    </button>
+
                     <button 
                         class="agendaHeader"
                         onClick={this.nextDay}
